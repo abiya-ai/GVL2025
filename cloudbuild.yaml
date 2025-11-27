@@ -1,4 +1,6 @@
 # cloudbuild.yaml
+options:
+  logging: CLOUD_LOGGING_ONLY
 steps:
 # 1. Build the Docker Image (If using Cloud Run/GKE)
 - name: 'gcr.io/cloud-builders/docker'
