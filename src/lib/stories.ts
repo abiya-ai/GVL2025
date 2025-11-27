@@ -15,12 +15,4 @@ export const stories: Story[] = [
     imageId: 'photobooth',
     appUrl: 'https://photobooth-e6253.web.app/',
   },
-  {
-    id: '2',
-    title: 'Smart Recipe Finder',
-    description:
-      'A handy tool that suggests recipes based on the ingredients you have in your fridge, reducing food waste.',
-    imageId: 'recipe-app',
-    appUrl: '#',
-  },
 ];
