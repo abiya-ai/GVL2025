@@ -154,7 +154,11 @@ export default function Home() {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full hover:bg-primary/10 hover:text-primary"
+                  >
                     <Info className="h-6 w-6 text-muted-foreground" />
                   </Button>
                 </TooltipTrigger>
