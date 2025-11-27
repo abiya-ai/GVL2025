@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -11,7 +12,13 @@ import { sessions } from '@/lib/data';
 import { stories } from '@/lib/stories';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export default function Home() {
   const imageMap = new Map(PlaceHolderImages.map((img) => [img.id, img]));
@@ -140,9 +147,26 @@ export default function Home() {
       
       <section id="success-stories" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
-            Success Stories
-          </h2>
+          <div className="flex justify-center items-center gap-2 mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-center font-headline">
+              Success Stories
+            </h2>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Info className="h-6 w-6 text-muted-foreground" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    Reach out to the GVL team to add in any cool projects you
+                    have vibecoded
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
           <div className="flex justify-center">
             {stories.map((story) => {
               const image = imageMap.get(story.imageId);
