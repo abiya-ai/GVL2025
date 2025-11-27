@@ -25,7 +25,7 @@ export default function Home() {
             src={heroBgImage.imageUrl}
             alt={heroBgImage.description}
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-10"
             data-ai-hint={heroBgImage.imageHint}
           />
         )}
@@ -143,7 +143,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Success Stories
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:justify-center">
             {stories.map((story) => {
               const image = imageMap.get(story.imageId);
               return (
