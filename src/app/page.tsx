@@ -160,8 +160,8 @@ export default function Home() {
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>
-                    Reach out to the GVL team to add in any cool projects you
-                    have vibecoded
+                    Have a cool project you've vibe-coded? Reach out to the GVL
+                    team to get it featured!
                   </p>
                 </TooltipContent>
               </Tooltip>
