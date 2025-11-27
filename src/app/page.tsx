@@ -143,7 +143,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Success Stories
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:justify-center">
+          <div className="flex justify-center">
             {stories.map((story) => {
               const image = imageMap.get(story.imageId);
               return (
@@ -152,7 +152,7 @@ export default function Home() {
                   key={story.id}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block"
+                  className="group block max-w-lg"
                 >
                   <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                     {image && (
