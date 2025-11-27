@@ -147,34 +147,53 @@ export default function Home() {
             {stories.map((story) => {
               const image = imageMap.get(story.imageId);
               return (
-                <a
-                  href={story.appUrl}
-                  key={story.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block max-w-lg"
-                >
+                <div key={story.id} className="group max-w-lg">
                   <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
-                    {image && (
-                      <div className="relative w-full h-48">
-                        <Image
-                          src={image.imageUrl}
-                          alt={image.description}
-                          fill
-                          style={{ objectFit: 'cover' }}
-                          className="rounded-t-xl"
-                          data-ai-hint={image.imageHint}
-                        />
-                      </div>
-                    )}
+                    <a
+                      href={story.appUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      {image && (
+                        <div className="relative w-full h-48">
+                          <Image
+                            src={image.imageUrl}
+                            alt={image.description}
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            className="rounded-t-xl"
+                            data-ai-hint={image.imageHint}
+                          />
+                        </div>
+                      )}
+                    </a>
                     <CardHeader>
-                      <CardTitle className="font-headline mb-2 flex items-center">
-                        {story.title} <ExternalLink className="ml-2 h-5 w-5" />
-                      </CardTitle>
-                      <CardDescription>{story.description}</CardDescription>
+                      <a
+                        href={story.appUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <CardTitle className="font-headline mb-2 flex items-center">
+                          {story.title}{' '}
+                          <ExternalLink className="ml-2 h-5 w-5" />
+                        </CardTitle>
+                      </a>
+                      <p className="text-sm text-muted-foreground">
+                        Credit: {story.authorName}{' '}
+                        <a
+                          href={story.authorUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:underline"
+                        >
+                          {story.authorHandle}
+                        </a>
+                      </p>
+                      <CardDescription className="pt-2">{story.description}</CardDescription>
                     </CardHeader>
                   </Card>
-                </a>
+                </div>
               );
             })}
           </div>
