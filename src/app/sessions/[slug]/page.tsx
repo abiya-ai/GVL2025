@@ -93,10 +93,10 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
 
       <Card className="overflow-hidden">
         <CardHeader>
-          <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <CardTitle>Lab Document</CardTitle>
             {session.labDocUrl && (
-              <Button variant="link" asChild>
+              <Button variant="link" asChild className="p-0 h-auto self-start sm:self-center">
                 <a
                   href={session.labDocUrl}
                   target="_blank"
