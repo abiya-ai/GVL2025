@@ -93,10 +93,10 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
 
       <Card className="overflow-hidden">
         <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
             <CardTitle>Lab Document</CardTitle>
             {session.labDocUrl && (
-              <Button variant="link" asChild className="p-0 h-auto self-start sm:self-center">
+              <Button variant="link" asChild className="p-0 h-auto whitespace-nowrap">
                 <a
                   href={session.labDocUrl}
                   target="_blank"
@@ -108,7 +108,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
               </Button>
             )}
           </div>
-          <CardDescription>
+          <CardDescription className="pt-2">
             {session.labDocUrl
               ? 'Follow along with the hands-on lab below.'
               : 'The lab document will be available after the session.'}
