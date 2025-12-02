@@ -26,6 +26,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import * as React from 'react';
@@ -36,6 +37,23 @@ export default function Home() {
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true })
   );
+
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
 
   return (
     <>
@@ -205,6 +223,7 @@ export default function Home() {
             </TooltipProvider>
           </div>
           <Carousel
+            setApi={setApi}
             opts={{
               align: 'start',
               loop: true,
@@ -280,6 +299,18 @@ export default function Home() {
             <CarouselPrevious className="h-14 w-14 -left-4 [&>svg]:h-8 [&>svg]:w-8" />
             <CarouselNext className="h-14 w-14 -right-4 [&>svg]:h-8 [&>svg]:w-8" />
           </Carousel>
+           <div className="flex justify-center gap-2 mt-8">
+            {Array.from({ length: count }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-3 w-3 rounded-full transition-colors ${
+                  index === current - 1 ? 'bg-primary' : 'bg-primary/20'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </section>
     </>
