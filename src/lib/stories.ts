@@ -1,3 +1,4 @@
+
 export type Story = {
   id: string;
   title: string;
@@ -20,5 +21,16 @@ export const stories: Story[] = [
     authorName: 'Gwen Yap',
     authorHandle: '@yaphui',
     authorUrl: 'https://moma.corp.google.com/person/yaphui?q=gwen%20yap',
+  },
+  {
+    id: '2',
+    title: 'Ecommerce Proof of Concept',
+    description:
+      'A proof-of-concept demo for an ecommerce site, focusing on up-selling products with an attractive product page, search, and filtering.',
+    imageId: 'ecommerce-poc',
+    appUrl: 'https://cymbal-retail-vto-253658775005.asia-southeast1.run.app/',
+    authorName: 'GVL Team',
+    authorHandle: '',
+    authorUrl: '',
   },
 ];

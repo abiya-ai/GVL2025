@@ -191,11 +191,11 @@ export default function Home() {
               </Tooltip>
             </TooltipProvider>
           </div>
-          <div className="flex justify-center">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {stories.map((story) => {
               const image = imageMap.get(story.imageId);
               return (
-                <div key={story.id} className="group max-w-lg">
+                <div key={story.id} className="group">
                   <Card className="h-full flex flex-col overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                     <a
                       href={story.appUrl}
@@ -229,14 +229,16 @@ export default function Home() {
                       </a>
                       <p className="text-sm text-muted-foreground">
                         Credit: {story.authorName}{' '}
-                        <a
-                          href={story.authorUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:underline"
-                        >
-                          {story.authorHandle}
-                        </a>
+                        {story.authorHandle && story.authorUrl && (
+                          <a
+                            href={story.authorUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:underline"
+                          >
+                            {story.authorHandle}
+                          </a>
+                        )}
                       </p>
                       <CardDescription className="pt-2">{story.description}</CardDescription>
                     </CardHeader>
