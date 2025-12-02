@@ -83,76 +83,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-secondary/50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
-            Tools You&apos;ll Use
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Firebase Studio 🔥</CardTitle>
-                <CardDescription>
-                  The interactive, AI-assisted development environment you&apos;ll use
-                  to build and modify your application.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto">
-                <Button asChild className="w-full md:w-auto">
-                  <a
-                    href="https://studio.firebase.google.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Launch Studio <ExternalLink className="ml-2" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>Gemini 🤖</CardTitle>
-                <CardDescription>
-                  Your creative AI partner. Use it to generate ideas, write
-                  code, and explore possibilities.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto">
-                <Button asChild className="w-full md:w-auto">
-                  <a
-                    href="https://gemini.google.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Open Gemini <ExternalLink className="ml-2" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-            <Card className="flex flex-col">
-              <CardHeader>
-                <CardTitle>GVL 101 Cookbook 📖</CardTitle>
-                <CardDescription>
-                  A compilation of common elements and layouts for beginner
-                  vibe coders. You can also access this at go/gvl101.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="mt-auto">
-                <Button asChild className="w-full md:w-auto">
-                  <a
-                    href="https://vibe-coding-ui-cheatsheet-253658775005.asia-southeast1.run.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Explore Cookbook <BookCopy className="ml-2" />
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       <section id="sessions" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
@@ -195,7 +125,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      
+
       <section id="success-stories" className="py-16 md:py-24 bg-secondary/50">
         <div className="container mx-auto px-4">
           <div className="flex justify-center items-center gap-2 mb-12">
@@ -310,6 +240,76 @@ export default function Home() {
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
+            Tools You&apos;ll Use
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Firebase Studio 🔥</CardTitle>
+                <CardDescription>
+                  The interactive, AI-assisted development environment you&apos;ll use
+                  to build and modify your application.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild className="w-full md:w-auto">
+                  <a
+                    href="https://studio.firebase.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Launch Studio <ExternalLink className="ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Gemini 🤖</CardTitle>
+                <CardDescription>
+                  Your creative AI partner. Use it to generate ideas, write
+                  code, and explore possibilities.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild className="w-full md:w-auto">
+                  <a
+                    href="https://gemini.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Gemini <ExternalLink className="ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+            <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>GVL 101 Cookbook 📖</CardTitle>
+                <CardDescription>
+                  A compilation of common elements and layouts for beginner
+                  vibe coders. You can also access this at go/gvl101.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild className="w-full md:w-auto">
+                  <a
+                    href="https://vibe-coding-ui-cheatsheet-253658775005.asia-southeast1.run.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Explore Cookbook <BookCopy className="ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
