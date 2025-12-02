@@ -267,8 +267,8 @@ export default function Home() {
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="h-14 w-14 -left-4 [&>svg]:h-8 [&>svg]:w-8" />
+            <CarouselNext className="h-14 w-14 -right-4 [&>svg]:h-8 [&>svg]:w-8" />
           </Carousel>
         </div>
       </section>
