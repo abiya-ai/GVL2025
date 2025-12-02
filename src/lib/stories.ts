@@ -33,4 +33,14 @@ export const stories: Story[] = [
     authorHandle: '@nigelcheong',
     authorUrl: 'https://moma.corp.google.com/person/nigelcheong@google.com',
   },
+  {
+    id: '3',
+    title: 'AI Fraud Defense Demo',
+    description: 'A POC app simulating how Agentic AI can help prevent fraud among users using voice intervention and real-time analysis.',
+    imageId: 'fraud-detection',
+    appUrl: 'https://guardian-agent-fraud-defense-demo-596731483925.us-west1.run.app/',
+    authorName: 'Asif Saleem',
+    authorHandle: '@asifsaleem',
+    authorUrl: 'https://moma.corp.google.com/person/asifsaleem'
+  }
 ];
