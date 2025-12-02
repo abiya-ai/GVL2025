@@ -109,7 +109,7 @@ export default function Home() {
               <CardContent className="mt-auto">
                 <Button asChild className="w-full md:w-auto">
                   <a
-                    href="http://go/gvl101"
+                    href="https://vibe-coding-ui-cheatsheet-253658775005.asia-southeast1.run.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
