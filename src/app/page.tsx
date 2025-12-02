@@ -103,7 +103,7 @@ export default function Home() {
                 <CardTitle>GVL 101 Cookbook 📖</CardTitle>
                 <CardDescription>
                   A compilation of common elements and layouts for beginner vibe
-                  coders.
+                  coders. You can also access this at go/gvl101.
                 </CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
