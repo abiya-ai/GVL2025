@@ -1,4 +1,5 @@
 
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -26,10 +27,15 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import Autoplay from 'embla-carousel-autoplay';
+import * as React from 'react';
 
 export default function Home() {
   const imageMap = new Map(PlaceHolderImages.map((img) => [img.id, img]));
   const heroBgImage = imageMap.get('session-general');
+  const plugin = React.useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true })
+  );
 
   return (
     <>
@@ -109,8 +115,8 @@ export default function Home() {
               <CardHeader>
                 <CardTitle>GVL 101 Cookbook 📖</CardTitle>
                 <CardDescription>
-                  A compilation of common elements and layouts for beginner vibe
-                  coders. You can also access this at go/gvl101.
+                  A compilation of common elements and layouts for beginner
+                  vibe coders. You can also access this at go/gvl101.
                 </CardDescription>
               </CardHeader>
               <CardContent className="mt-auto">
@@ -201,7 +207,11 @@ export default function Home() {
           <Carousel
             opts={{
               align: 'start',
+              loop: true,
             }}
+            plugins={[plugin.current]}
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
             className="w-full max-w-7xl mx-auto"
           >
             <CarouselContent>
