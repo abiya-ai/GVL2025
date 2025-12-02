@@ -24,7 +24,7 @@ export const stories: Story[] = [
   },
   {
     id: '2',
-    title: 'Ecommerce Proof of Concept',
+    title: 'Cymbal Retail Shopping Experience',
     description:
       'A proof-of-concept demo for an ecommerce site, focusing on up-selling products with an attractive product page, search, and filtering.',
     imageId: 'ecommerce-poc',
