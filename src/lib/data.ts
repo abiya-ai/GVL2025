@@ -22,7 +22,7 @@ export const sessions: Session[] = [
     recordingUrl:
       'https://drive.google.com/file/d/1NZ_Z7SllJwGgZnpax-s4vIPm-u01ya_7/view?usp=sharing',
     slidesUrl:
-      'https://docs.google.com/presentation/d/12PEOjLvCF48dQ4riKDsm5_cO-DO6iPdc-6y0KKWYqkw/edit?usp=drive_link',
+      'https://docs.google.com/presentation/d/15vfWDOFSuWCbFaokRsKyRhuqiku2muubbdTkDgLdVqU/edit?usp=sharing',
     labDocUrl:
       'https://docs.google.com/document/d/e/2PACX-1vTFgdLMRfBlEtYgF0cjEjt6mzCN2sbEj3Dxd6NKOIqbQG-d6Lm7W6jetty9BXi9HSgcJL6VUJPkqCbF/pub?embedded=true',
     date: '2025-11-26',
