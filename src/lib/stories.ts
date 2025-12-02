@@ -29,8 +29,8 @@ export const stories: Story[] = [
       'A proof-of-concept demo for an ecommerce site, focusing on up-selling products with an attractive product page, search, and filtering.',
     imageId: 'ecommerce-poc',
     appUrl: 'https://cymbal-retail-vto-253658775005.asia-southeast1.run.app/',
-    authorName: 'GVL Team',
-    authorHandle: '',
-    authorUrl: '',
+    authorName: 'Nigel Cheong',
+    authorHandle: '@nigelcheong',
+    authorUrl: 'https://moma.corp.google.com/person/nigelcheong@google.com',
   },
 ];
