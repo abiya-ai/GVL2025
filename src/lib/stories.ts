@@ -42,5 +42,15 @@ export const stories: Story[] = [
     authorName: 'Asif Saleem',
     authorHandle: '@asifsaleem',
     authorUrl: 'https://moma.corp.google.com/person/asifsaleem'
+  },
+  {
+    id: '4',
+    title: 'BankGen Onboarding Demo',
+    description: 'Helps banks automate KYC by verifying users with government-issued credentials to streamline account creation.',
+    imageId: 'bank-kyc',
+    appUrl: 'https://bankgen-onboarding-596731483925.us-west1.run.app/',
+    authorName: 'Asif Saleem',
+    authorHandle: '@asifsaleem',
+    authorUrl: 'https://moma.corp.google.com/person/asifsaleem'
   }
 ];

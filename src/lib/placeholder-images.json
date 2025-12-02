@@ -41,6 +41,12 @@
       "description": "An abstract visualization of AI and security.",
       "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzeWJlciUyMHNlY3VyaXR5fGVufDB8fHx8MTc2NDY0ODg4Nnww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "ai security"
+    },
+    {
+      "id": "bank-kyc",
+      "description": "A person using a phone for online identity verification.",
+      "imageUrl": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwaWRlbnRpdHl8ZW58MHx8fHwxNzY0NzM0ODExfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital identity"
     }
   ]
 }
