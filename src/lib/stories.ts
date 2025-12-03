@@ -15,7 +15,7 @@ export const stories: Story[] = [
     id: '1',
     title: 'Photobooth App',
     description:
-      'An app that lets you take photos and arranges them in a classic photobooth-style strip.',
+      'Inspired by the 1970s and emerging trend of film & digital cameras, this Photobooth App lets you snap moments and arrange them in a classic, photobooth-style strip. Skip the travel just to find a photobooth, your next "cool" moment is now readily available anytime straight from your device!',
     imageId: 'photobooth',
     appUrl: 'https://photobooth-e6253.web.app/',
     authorName: 'Gwen Yap',
