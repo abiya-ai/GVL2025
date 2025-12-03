@@ -26,7 +26,7 @@ export const stories: Story[] = [
     id: '2',
     title: 'Cymbal Retail Shopping Experience',
     description:
-      'A proof-of-concept demo for an ecommerce site, focusing on up-selling products with an attractive product page, search, and filtering.',
+      "This app brings retail shopping experience from start to finish without the need to leave your house - do it right at the comfort of your palm! Choose the product that you like, then upload a picture of yourself to visualise how you'll look like in various occasions and environment!",
     imageId: 'ecommerce-poc',
     appUrl: 'https://cymbal-retail-vto-253658775005.asia-southeast1.run.app/',
     authorName: 'Nigel Cheong',
