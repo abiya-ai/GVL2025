@@ -8,6 +8,7 @@ import {
   ExternalLink,
   ArrowLeft,
   CalendarDays,
+  BookCopy,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -27,18 +28,25 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const hasLabDoc = session.labDocUrl && session.labDocUrl !== '#';
+  const hasLabDoc = session.labDocUrl && session.labDocUrl !== '';
   const hasSlides = session.slidesUrl && session.slidesUrl !== '#';
   const hasRecording = session.recordingUrl && session.recordingUrl !== '#';
+
+  const isCheatsheet = session.slug === 'design-and-ux';
 
   const slidesButton = hasSlides ? (
     <Button size="lg" variant="secondary" asChild className="w-full">
       <a
-        href={hasLabDoc ? session.slidesUrl : '#slides'}
-        target={hasLabDoc ? '_blank' : '_self'}
-        rel={hasLabDoc ? 'noopener noreferrer' : ''}
+        href={session.slidesUrl}
+        target="_blank"
+        rel="noopener noreferrer"
       >
-        <Presentation className="mr-2 h-5 w-5" /> Access Slides
+        {isCheatsheet ? (
+          <BookCopy className="mr-2 h-5 w-5" />
+        ) : (
+          <Presentation className="mr-2 h-5 w-5" />
+        )}
+        {isCheatsheet ? 'Access UI/UX Cheatsheet' : 'Access Slides'}
       </a>
     </Button>
   ) : (
@@ -46,6 +54,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
       <Presentation className="mr-2 h-5 w-5" /> Access Slides
     </Button>
   );
+
 
   return (
     <>
@@ -134,7 +143,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
             </CardContent>
           </Card>
         </div>
-      ) : hasSlides ? (
+      ) : hasSlides && !isCheatsheet ? (
         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
           <Card className="overflow-hidden">
             <CardHeader>
