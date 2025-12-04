@@ -143,12 +143,12 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
             </CardContent>
           </Card>
         </div>
-      ) : hasSlides && !isCheatsheet ? (
+      ) : hasSlides ? (
         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
           <Card className="overflow-hidden">
             <CardHeader>
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-                <CardTitle>Slides</CardTitle>
+                <CardTitle>{isCheatsheet ? 'UI/UX Cheatsheet' : 'Slides'}</CardTitle>
                 <Button
                   variant="link"
                   asChild
@@ -165,18 +165,20 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
                 </Button>
               </div>
               <CardDescription className="pt-2">
-                Review the presentation slides below.
+                {isCheatsheet
+                  ? 'Explore the UI/UX cheatsheet below.'
+                  : 'Review the presentation slides below.'}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
                 <iframe
-                  src={session.slidesUrl.replace('/edit', '/embed')}
+                  src={isCheatsheet ? session.slidesUrl : session.slidesUrl.replace('/edit', '/embed')}
                   className="h-full w-full"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                  title="Slides"
+                  title={isCheatsheet ? 'UI/UX Cheatsheet' : 'Slides'}
                 ></iframe>
               </div>
             </CardContent>
