@@ -34,8 +34,8 @@ export const sessions: Session[] = [
     description:
       'Learn how to customize the look and feel of your application, from colors and fonts to layout and branding.',
     imageId: 'session-nextjs',
-    recordingUrl: '',
-    slidesUrl: '',
+    recordingUrl: '#',
+    slidesUrl: '#',
     labDocUrl: '',
     date: '2025-12-03',
   },
@@ -46,8 +46,8 @@ export const sessions: Session[] = [
     description:
       'Discover how to integrate various Google services into your app and learn the best practices for sharing your creation with the world.',
     imageId: 'session-typescript',
-    recordingUrl: '',
-    slidesUrl: '',
+    recordingUrl: '#',
+    slidesUrl: '#',
     labDocUrl: '',
     date: '2025-12-10',
   },
