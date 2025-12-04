@@ -41,12 +41,8 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        {isCheatsheet ? (
-          <BookCopy className="mr-2 h-5 w-5" />
-        ) : (
-          <Presentation className="mr-2 h-5 w-5" />
-        )}
-        {isCheatsheet ? 'Access UI/UX Cheatsheet' : 'Access Slides'}
+        <Presentation className="mr-2 h-5 w-5" />
+        {'Access Slides'}
       </a>
     </Button>
   ) : (
