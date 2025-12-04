@@ -93,12 +93,12 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
-        <Card className="overflow-hidden">
-          <CardHeader>
-            <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-              <CardTitle>Lab Document</CardTitle>
-              {session.labDocUrl && (
+      {session.labDocUrl && (
+        <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+          <Card className="overflow-hidden">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>Lab Document</CardTitle>
                 <Button
                   variant="link"
                   asChild
@@ -113,15 +113,11 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
                     Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
-              )}
-            </div>
-            <CardDescription className="pt-2">
-              {session.labDocUrl
-                ? 'Follow along with the hands-on lab below.'
-                : 'The lab document will be available after the session.'}
-            </CardDescription>
-          </CardHeader>
-          {session.labDocUrl && (
+              </div>
+              <CardDescription className="pt-2">
+                Follow along with the hands-on lab below.
+              </CardDescription>
+            </CardHeader>
             <CardContent>
               <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
                 <iframe
@@ -134,9 +130,9 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
                 ></iframe>
               </div>
             </CardContent>
-          )}
-        </Card>
-      </div>
+          </Card>
+        </div>
+      )}
     </>
   );
 }
