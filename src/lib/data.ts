@@ -35,7 +35,8 @@ export const sessions: Session[] = [
       'Learn how to customize the look and feel of your application, from colors and fonts to layout and branding.',
     imageId: 'session-nextjs',
     recordingUrl: 'https://drive.google.com/file/d/1Gji88qjOCQAdY0yJ9Y1v9QImZ5pSblzD/view?usp=drive_link&resourcekey=0-JBsrNnSkYBY8LzaU68xEqw',
-    slidesUrl: '#',
+    slidesUrl:
+      'https://docs.google.com/presentation/d/1B--_ES-2Kbl2pB52s1sGu0vtr9z2i_IKi3GgYJ9M63o/edit?usp=sharing',
     labDocUrl: '',
     date: '2025-12-03',
   },

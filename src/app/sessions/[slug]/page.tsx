@@ -27,28 +27,16 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const recordingButton = session.recordingUrl ? (
-    <Button size="lg" asChild className="w-full">
-      <a
-        href={session.recordingUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Video className="mr-2 h-5 w-5" /> View Recording
-      </a>
-    </Button>
-  ) : (
-    <Button size="lg" className="w-full" disabled>
-      <Video className="mr-2 h-5 w-5" /> View Recording
-    </Button>
-  );
+  const hasLabDoc = session.labDocUrl && session.labDocUrl !== '#';
+  const hasSlides = session.slidesUrl && session.slidesUrl !== '#';
+  const hasRecording = session.recordingUrl && session.recordingUrl !== '#';
 
-  const slidesButton = session.slidesUrl ? (
+  const slidesButton = hasSlides ? (
     <Button size="lg" variant="secondary" asChild className="w-full">
       <a
-        href={session.slidesUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={hasLabDoc ? session.slidesUrl : '#slides'}
+        target={hasLabDoc ? '_blank' : '_self'}
+        rel={hasLabDoc ? 'noopener noreferrer' : ''}
       >
         <Presentation className="mr-2 h-5 w-5" /> Access Slides
       </a>
@@ -88,12 +76,26 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
         </div>
 
         <div className="my-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {recordingButton}
+           {hasRecording ? (
+             <Button size="lg" asChild className="w-full">
+               <a
+                 href={session.recordingUrl}
+                 target="_blank"
+                 rel="noopener noreferrer"
+               >
+                 <Video className="mr-2 h-5 w-5" /> View Recording
+               </a>
+             </Button>
+           ) : (
+             <Button size="lg" className="w-full" disabled>
+               <Video className="mr-2 h-5 w-5" /> View Recording
+             </Button>
+           )}
           {slidesButton}
         </div>
       </div>
 
-      {session.labDocUrl && (
+      {hasLabDoc ? (
         <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
           <Card className="overflow-hidden">
             <CardHeader>
@@ -132,7 +134,46 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
             </CardContent>
           </Card>
         </div>
-      )}
+      ) : hasSlides ? (
+        <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+          <Card className="overflow-hidden">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>Slides</CardTitle>
+                <Button
+                  variant="link"
+                  asChild
+                  className="p-0 h-auto whitespace-nowrap"
+                >
+                  <a
+                    href={session.slidesUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+              <CardDescription className="pt-2">
+                Review the presentation slides below.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
+                <iframe
+                  src={session.slidesUrl.replace('/edit', '/embed')}
+                  className="h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="Slides"
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      ) : null}
     </>
   );
 }
