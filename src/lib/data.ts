@@ -36,7 +36,7 @@ export const sessions: Session[] = [
     imageId: 'session-nextjs',
     recordingUrl: 'https://drive.google.com/file/d/1Gji88qjOCQAdY0yJ9Y1v9QImZ5pSblzD/view?usp=drive_link&resourcekey=0-JBsrNnSkYBY8LzaU68xEqw',
     slidesUrl:
-      'https://vibe-coding-ui-cheatsheet-253658775005.asia-southeast1.run.app/',
+      'https://docs.google.com/presentation/d/1FlTd1p4PUAVYTgD_FFgMe41maSctVlLRwJe9IjfHYrY/edit?usp=sharing',
     labDocUrl: '',
     date: '2025-12-03',
   },
