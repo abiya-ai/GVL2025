@@ -31,9 +31,9 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
   const hasLabDoc = session.labDocUrl && session.labDocUrl !== '';
   const hasSlides = session.slidesUrl && session.slidesUrl !== '#';
   const hasRecording = session.recordingUrl && session.recordingUrl !== '#';
-
-  const isCheatsheet = session.slug === 'design-and-ux';
-
+  const hasCheatsheet = session.cheatsheetUrl && session.cheatsheetUrl !== '';
+  const isCheatsheetSession = session.slug === 'design-and-ux';
+  
   const slidesButton = hasSlides ? (
     <Button size="lg" variant="secondary" asChild className="w-full">
       <a
@@ -51,6 +51,139 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
     </Button>
   );
 
+
+  const embeddedContent = () => {
+    if (hasLabDoc) {
+      return (
+        <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+              <CardTitle>Lab Document</CardTitle>
+              <Button
+                variant="link"
+                asChild
+                className="p-0 h-auto whitespace-nowrap"
+              >
+                <a
+                  href={session.labDocUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center"
+                >
+                  Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+            <CardDescription className="pt-2">
+              Follow along with the hands-on lab below.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
+              <iframe
+                src={session.labDocUrl}
+                className="h-full w-full"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Lab Document"
+              ></iframe>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      );
+    }
+    
+    if (isCheatsheetSession && hasCheatsheet) {
+      return (
+        <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+          <Card className="overflow-hidden">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>UI/UX Cheatsheet</CardTitle>
+                <Button
+                  variant="link"
+                  asChild
+                  className="p-0 h-auto whitespace-nowrap"
+                >
+                  <a
+                    href={session.cheatsheetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+              <CardDescription className="pt-2">
+                Explore the UI/UX cheatsheet below.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
+                <iframe
+                  src={session.cheatsheetUrl}
+                  className="h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title='UI/UX Cheatsheet'
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )
+    }
+
+    if (hasSlides) {
+      return (
+         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+          <Card className="overflow-hidden">
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>Slides</CardTitle>
+                <Button
+                  variant="link"
+                  asChild
+                  className="p-0 h-auto whitespace-nowrap"
+                >
+                  <a
+                    href={session.slidesUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+              <CardDescription className="pt-2">
+                Review the presentation slides below.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
+                <iframe
+                  src={session.slidesUrl.replace('/edit', '/embed')}
+                  className="h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title='Slides'
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )
+    }
+
+    return null;
+  }
 
   return (
     <>
@@ -100,87 +233,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
         </div>
       </div>
 
-      {hasLabDoc ? (
-        <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
-          <Card className="overflow-hidden">
-            <CardHeader>
-              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-                <CardTitle>Lab Document</CardTitle>
-                <Button
-                  variant="link"
-                  asChild
-                  className="p-0 h-auto whitespace-nowrap"
-                >
-                  <a
-                    href={session.labDocUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
-              <CardDescription className="pt-2">
-                Follow along with the hands-on lab below.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
-                <iframe
-                  src={session.labDocUrl}
-                  className="h-full w-full"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title="Lab Document"
-                ></iframe>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      ) : hasSlides ? (
-        <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
-          <Card className="overflow-hidden">
-            <CardHeader>
-              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
-                <CardTitle>{isCheatsheet ? 'UI/UX Cheatsheet' : 'Slides'}</CardTitle>
-                <Button
-                  variant="link"
-                  asChild
-                  className="p-0 h-auto whitespace-nowrap"
-                >
-                  <a
-                    href={session.slidesUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center"
-                  >
-                    Open in new tab <ExternalLink className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
-              <CardDescription className="pt-2">
-                {isCheatsheet
-                  ? 'Explore the UI/UX cheatsheet below.'
-                  : 'Review the presentation slides below.'}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
-                <iframe
-                  src={isCheatsheet ? session.slidesUrl : session.slidesUrl.replace('/edit', '/embed')}
-                  className="h-full w-full"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={isCheatsheet ? 'UI/UX Cheatsheet' : 'Slides'}
-                ></iframe>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      ) : null}
+     {embeddedContent()}
     </>
   );
 }

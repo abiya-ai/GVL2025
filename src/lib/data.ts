@@ -9,6 +9,7 @@ export type Session = {
   slidesUrl: string;
   labDocUrl: string;
   date: string;
+  cheatsheetUrl?: string;
 };
 
 export const sessions: Session[] = [
@@ -39,6 +40,7 @@ export const sessions: Session[] = [
       'https://docs.google.com/presentation/d/1FlTd1p4PUAVYTgD_FFgMe41maSctVlLRwJe9IjfHYrY/edit?usp=sharing',
     labDocUrl: '',
     date: '2025-12-03',
+    cheatsheetUrl: 'https://vibe-coding-ui-cheatsheet-253658775005.asia-southeast1.run.app/',
   },
   {
     id: '3',
