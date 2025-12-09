@@ -50,8 +50,9 @@ export const sessions: Session[] = [
       'Discover how to integrate various Google services into your app and learn the best practices for sharing your creation with the world.',
     imageId: 'session-typescript',
     recordingUrl: '#',
-    slidesUrl: '#',
+    slidesUrl: 'https://docs.google.com/presentation/d/10iOEksxqNCxIGfUYuIsn7lKWp1o5GVYQ9VtUbrJpbLY/edit?usp=sharing',
     labDocUrl: '',
     date: '2025-12-10',
   },
 ];
+

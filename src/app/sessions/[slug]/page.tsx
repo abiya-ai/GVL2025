@@ -32,7 +32,6 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
   const hasSlides = session.slidesUrl && session.slidesUrl !== '#';
   const hasRecording = session.recordingUrl && session.recordingUrl !== '#';
   const hasCheatsheet = session.cheatsheetUrl && session.cheatsheetUrl !== '';
-  const isCheatsheetSession = session.slug === 'design-and-ux';
   
   const slidesButton = hasSlides ? (
     <Button size="lg" variant="secondary" asChild className="w-full">
@@ -96,7 +95,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
       );
     }
     
-    if (isCheatsheetSession && hasCheatsheet) {
+    if (hasCheatsheet) {
       return (
         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
           <Card className="overflow-hidden">
