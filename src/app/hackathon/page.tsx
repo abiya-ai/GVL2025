@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 
 const rubricsUrl =
-  'https://docs.google.com/document/d/11B8iTZXMhpqrZU9qehAKCkQn5JcETbadAXVH5vxkDNk/pub?embedded=true';
+  'https://docs.google.com/document/d/e/2PACX-1vTtJ4RH37_tutWsecIXx_LjkkDCqef8V6V1U1z1ZIbIk75TPGyTo7ByNX4Q2EWClrxh9XyfTc-nBrI6/pub';
 const onePagerUrl =
   'https://docs.google.com/presentation/d/109KpUxw9bNK9EdmhrcwEc2D5R-TV2MR5tFsbKgKqDfE/embed?start=false&loop=false&delayms=3000';
 
@@ -30,7 +30,7 @@ export default function HackathonPage() {
                 className="p-0 h-auto whitespace-nowrap"
               >
                 <a
-                  href={rubricsUrl.replace('/pub?embedded=true', '/edit')}
+                  href={rubricsUrl.replace('/pub', '/edit')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center"
@@ -46,7 +46,7 @@ export default function HackathonPage() {
           <CardContent>
             <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
               <iframe
-                src={rubricsUrl}
+                src={`${rubricsUrl}?embedded=true`}
                 className="h-full w-full"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
