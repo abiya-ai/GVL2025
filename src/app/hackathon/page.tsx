@@ -9,9 +9,9 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 
 const rubricsUrl =
-  'https://docs.google.com/document/d/e/2PACX-1vTFgdLMRfBlEtYgF0cjEjt6mzCN2sbEj3Dxd6NKOIqbQG-d6Lm7W6jetty9BXi9HSgcJL6VUJPkqCbF/pub?embedded=true'; // Placeholder
+  'https://docs.google.com/document/d/11B8iTZXMhpqrZU9qehAKCkQn5JcETbadAXVH5vxkDNk/pub?embedded=true';
 const onePagerUrl =
-  'https://docs.google.com/presentation/d/15vfWDOFSuWCbFaokRsKyRhuqiku2muubbdTkDgLdVqU/embed?start=false&loop=false&delayms=3000'; // placeholder
+  'https://docs.google.com/presentation/d/109KpUxw9bNK9EdmhrcwEc2D5R-TV2MR5tFsbKgKqDfE/embed?start=false&loop=false&delayms=3000';
 
 export default function HackathonPage() {
   return (
@@ -30,7 +30,7 @@ export default function HackathonPage() {
                 className="p-0 h-auto whitespace-nowrap"
               >
                 <a
-                  href={rubricsUrl.replace('?embedded=true', '')}
+                  href={rubricsUrl.replace('/pub?embedded=true', '/edit')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center"
@@ -67,7 +67,10 @@ export default function HackathonPage() {
                 className="p-0 h-auto whitespace-nowrap"
               >
                 <a
-                  href={onePagerUrl.replace('/embed', '/edit')}
+                  href={onePagerUrl.replace(
+                    '/embed?start=false&loop=false&delayms=3000',
+                    '/edit'
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center"
