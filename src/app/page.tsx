@@ -13,7 +13,7 @@ import { sessions } from '@/lib/data';
 import { stories } from '@/lib/stories';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, ExternalLink, Info, BookCopy } from 'lucide-react';
+import { ArrowRight, ExternalLink, Info, BookCopy, LayoutDashboard } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
@@ -256,7 +256,7 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Tools You&apos;ll Use
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             <Card className="flex flex-col">
               <CardHeader>
                 <CardTitle>Firebase Studio 🔥</CardTitle>
@@ -313,6 +313,25 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     Explore Cookbook <BookCopy className="ml-2" />
+                  </a>
+                </Button>
+              </CardContent>
+            </Card>
+             <Card className="flex flex-col">
+              <CardHeader>
+                <CardTitle>Firebase Console 🛠️</CardTitle>
+                <CardDescription>
+                  Manage your Firebase projects, view analytics, and configure your backend services.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="mt-auto">
+                <Button asChild className="w-full md:w-auto">
+                  <a
+                    href="https://console.firebase.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Console <LayoutDashboard className="ml-2" />
                   </a>
                 </Button>
               </CardContent>
