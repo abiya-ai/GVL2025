@@ -75,11 +75,18 @@ export default function Home() {
             A 3-week vibe coding program designed to empower non-tech employees
             to strengthen their AI & Digital Acumen!
           </p>
-          <Button size="lg" asChild>
-            <Link href="#sessions">
-              Explore Sessions <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button size="lg" asChild>
+              <Link href="#sessions">
+                Explore Sessions <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/hackathon">
+                View Hackathon <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
