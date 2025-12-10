@@ -7,6 +7,7 @@ export type Submission = {
   imageId: string;
   appUrl: string;
   videoUrl: string;
+  round: 'preliminary' | 'final';
 };
 
 export const submissions: Submission[] = [
@@ -21,6 +22,7 @@ export const submissions: Submission[] = [
     imageId: 'submission-project',
     appUrl: '#',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    round: 'preliminary',
   },
   {
     id: '2',
@@ -33,6 +35,7 @@ export const submissions: Submission[] = [
     imageId: 'submission-project',
     appUrl: '#',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    round: 'preliminary',
   },
   {
     id: '3',
@@ -45,5 +48,6 @@ export const submissions: Submission[] = [
     imageId: 'submission-project',
     appUrl: '#',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    round: 'preliminary',
   },
 ];
