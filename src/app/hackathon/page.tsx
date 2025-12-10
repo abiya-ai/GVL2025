@@ -6,7 +6,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Eye } from 'lucide-react';
+import Link from 'next/link';
 
 const rubricsUrl =
   'https://docs.google.com/document/d/e/2PACX-1vTtJ4RH37_tutWsecIXx_LjkkDCqef8V6V1U1z1ZIbIk75TPGyTo7ByNX4Q2EWClrxh9XyfTc-nBrI6/pub';
@@ -16,9 +17,18 @@ const onePagerUrl =
 export default function HackathonPage() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
-      <h1 className="text-4xl font-bold tracking-tight font-headline md:text-5xl mb-12">
-        Hackathon
-      </h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start mb-12 gap-4">
+        <h1 className="text-4xl font-bold tracking-tight font-headline md:text-5xl">
+          Hackathon
+        </h1>
+        <Button asChild>
+          <Link href="/hackathon/submissions">
+            <Eye className="mr-2 h-5 w-5" />
+            View Submissions
+          </Link>
+        </Button>
+      </div>
+
       <div className="space-y-12">
         <Card className="overflow-hidden">
           <CardHeader>
