@@ -53,6 +53,24 @@
       "description": "Abstract software development grid.",
       "imageUrl": "https://images.unsplash.com/photo-1713771541809-36b07b530a87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhYnN0cmFjdCUyMHNvZnR3YXJlfGVufDB8fHx8MTc2NTM0Njk4NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract software"
+    },
+    {
+      "id": "submission-storybook",
+      "description": "An open pop-up storybook on a wooden table.",
+      "imageUrl": "https://images.unsplash.com/photo-1533327325824-76bc4e62d560?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzdG9yeWJvb2t8ZW58MHx8fHwxNzY1ODkyOTU1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "storybook open"
+    },
+    {
+      "id": "submission-garden",
+      "description": "People working together in a sunny community garden.",
+      "imageUrl": "https://images.unsplash.com/photo-1588231317424-76412a759a1f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb21tdW5pdHklMjBnYXJkZW58ZW58MHx8fHwxNzY1ODkzMDA5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "community garden"
+    },
+    {
+      "id": "submission-cookbook",
+      "description": "A vintage cookbook open on a kitchen counter with ingredients.",
+      "imageUrl": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb29rYm9va3xlbnwwfHx8fDE3NjU4OTMwNTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "vintage cookbook"
     }
   ]
 }
