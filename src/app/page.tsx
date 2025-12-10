@@ -83,7 +83,7 @@ export default function Home() {
             </Button>
             <Button size="lg" variant="outline" asChild>
               <Link href="/hackathon">
-                View Hackathon <ArrowRight className="ml-2 h-5 w-5" />
+                View Hackathon Details <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
