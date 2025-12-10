@@ -1,9 +1,10 @@
-import { submissions } from '@/lib/submissions';
+import { fetchSubmissions } from '@/lib/submissions-fetcher';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Users, ExternalLink, Video } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
 import {
   Card,
   CardContent,
@@ -12,11 +13,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-export default function SubmissionDetailPage({
+export default async function SubmissionDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
+  const submissions = await fetchSubmissions();
   const submission = submissions.find((s) => s.id === params.id);
   const submissionIndex = submissions.findIndex((s) => s.id === params.id);
 
@@ -25,6 +27,8 @@ export default function SubmissionDetailPage({
   }
 
   const submissionId = `Proj-${String(submissionIndex + 1).padStart(2, '0')}`;
+  
+  const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
@@ -51,27 +55,50 @@ export default function SubmissionDetailPage({
       </div>
 
       <div className="my-10 space-y-10">
-        <Card>
-          <CardHeader>
-            <CardTitle>Video Demo</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="relative aspect-video w-full overflow-hidden rounded-md border">
-              <iframe
-                src={submission.videoUrl}
-                className="absolute top-0 left-0 h-full w-full"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                title={`${submission.title} Video Demo`}
-              ></iframe>
-            </div>
-          </CardContent>
-        </Card>
+        {hasVideo ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>Video Demo</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="relative aspect-video w-full overflow-hidden rounded-md border">
+                <iframe
+                  src={submission.videoUrl}
+                  className="absolute top-0 left-0 h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`${submission.title} Video Demo`}
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          submission.imageId && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Project Thumbnail</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="relative aspect-video w-full overflow-hidden rounded-md border">
+                  <Image
+                    src={submission.imageId}
+                    alt={`${submission.title} thumbnail`}
+                    fill
+                    style={{ objectFit: 'contain' }} // Use contain to show the whole image
+                    className="bg-muted"
+                    unoptimized
+                  />
+                </div>
+              </CardContent>
+            </Card>
+          )
+        )}
 
         <Card>
           <CardHeader>
             <CardTitle>Project Details</CardTitle>
+            <CardDescription>{submission.summary}</CardDescription>
           </CardHeader>
           <CardContent>
             <p className="whitespace-pre-wrap text-foreground/80">
@@ -81,7 +108,7 @@ export default function SubmissionDetailPage({
         </Card>
       </div>
 
-      <div className="text-center">
+      <div className="text-center flex justify-center gap-4">
         <Button size="lg" asChild>
           <a
             href={submission.appUrl}
@@ -89,21 +116,34 @@ export default function SubmissionDetailPage({
             rel="noopener noreferrer"
             className="inline-flex items-center"
           >
-            View Deployed Application <ExternalLink className="ml-2 h-5 w-5" />
+            Try App <ExternalLink className="ml-2 h-5 w-5" />
           </a>
         </Button>
+         {hasVideo && (
+            <Button size="lg" variant="secondary" asChild>
+               <a
+                 href={submission.videoUrl.replace('/embed/','/watch?v=')}
+                 target="_blank"
+                 rel="noopener noreferrer"
+               >
+                 <Video className="mr-2 h-5 w-5" /> Watch Video
+               </a>
+            </Button>
+         )}
       </div>
     </div>
   );
 }
 
 export async function generateStaticParams() {
+  const submissions = await fetchSubmissions();
   return submissions.map((submission) => ({
     id: submission.id,
   }));
 }
 
-export function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const submissions = await fetchSubmissions();
   const submission = submissions.find((s) => s.id === params.id);
   if (!submission) {
     return {

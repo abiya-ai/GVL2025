@@ -1,5 +1,3 @@
-
-import { submissions } from '@/lib/submissions';
 import {
   Card,
   CardContent,
@@ -8,23 +6,19 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import { Users } from 'lucide-react';
 import Link from 'next/link';
+import { fetchSubmissions } from '@/lib/submissions-fetcher';
 
-export default function PreliminarySubmissionsPage() {
-  const imageMap = new Map(PlaceHolderImages.map((img) => [img.id, img]));
-  const preliminarySubmissions = submissions.filter(
-    (s) => s.round === 'preliminary'
-  );
+export default async function PreliminarySubmissionsPage() {
+  const preliminarySubmissions = await fetchSubmissions();
 
   return (
     <>
       {preliminarySubmissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {preliminarySubmissions.map((submission, index) => {
-            const image = imageMap.get(submission.imageId);
             const submissionId = `Proj-${String(index + 1).padStart(2, '0')}`;
             return (
               <Link
@@ -34,15 +28,15 @@ export default function PreliminarySubmissionsPage() {
               >
                 <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                   <CardHeader className="p-0">
-                    {image && (
+                    {submission.imageId && (
                       <div className="relative w-full aspect-video">
                         <Image
-                          src={image.imageUrl}
-                          alt={image.description}
+                          src={submission.imageId}
+                          alt={`${submission.title} thumbnail`}
                           fill
                           style={{ objectFit: 'cover' }}
-                          className="rounded-t-xl"
-                          data-ai-hint={image.imageHint}
+                          className="rounded-t-xl bg-muted"
+                          unoptimized // Required for external URLs without a defined hostname
                         />
                       </div>
                     )}
