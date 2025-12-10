@@ -1,5 +1,12 @@
 import Link from 'next/link';
-import { Code2 } from 'lucide-react';
+import { Code2, ChevronDown } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 
 export function Header() {
   return (
@@ -19,12 +26,24 @@ export function Header() {
           >
             Home
           </Link>
-          <Link
-            href="/hackathon"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Hackathon
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:bg-transparent px-0"
+              >
+                Hackathon <ChevronDown className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem asChild>
+                <Link href="/hackathon">Hackathon Details</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/hackathon/submissions">Submissions</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
     </header>
