@@ -70,7 +70,7 @@ export default function SubmissionsPage() {
                           <Users className="mr-2 h-4 w-4" />
                           <span>{submission.participants}</span>
                         </div>
-                        <CardDescription>{submission.summary}</CardDescription>
+                        <CardDescription className="text-foreground/80">{submission.summary}</CardDescription>
                       </div>
                     </CardContent>
                   </Card>
