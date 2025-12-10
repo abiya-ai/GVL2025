@@ -1,4 +1,4 @@
-import { fetchSubmissions } from '@/lib/submissions-fetcher';
+'use client';
 import { notFound } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Users, ExternalLink, Video } from 'lucide-react';
@@ -12,23 +12,98 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Submission } from '@/lib/submissions';
+import { db } from '@/firebase/config';
+import { doc, getDoc } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
-export default async function SubmissionDetailPage({
+function getYouTubeEmbedUrl(videoUrl: string): string | null {
+  if (!videoUrl) return null;
+
+  let videoId = null;
+  try {
+    const url = new URL(videoUrl);
+    if (url.hostname === 'youtu.be') {
+      videoId = url.pathname.slice(1);
+    } else if (
+      url.hostname === 'www.youtube.com' ||
+      url.hostname === 'youtube.com'
+    ) {
+      if (url.pathname === '/watch') {
+        videoId = url.searchParams.get('v');
+      } else if (url.pathname.startsWith('/embed/')) {
+        return videoUrl; // Already an embed URL
+      }
+    }
+  } catch (error) {
+    console.error('Invalid video URL:', videoUrl, error);
+    return null;
+  }
+
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : videoUrl; // Fallback to original URL
+}
+
+export default function SubmissionDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const submissions = await fetchSubmissions();
-  const submission = submissions.find((s) => s.id === params.id);
-  const submissionIndex = submissions.findIndex((s) => s.id === params.id);
+  const [submission, setSubmission] = useState<Submission | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (params.id) {
+      const fetchSubmission = async () => {
+        const docRef = doc(db, 'submissions', params.id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const videoUrl = getYouTubeEmbedUrl(data.video_url) || data.video_url;
+          
+          setSubmission({
+            id: docSnap.id,
+            title: data.project_name,
+            participants: [data.participant1, data.participant2]
+              .filter(Boolean)
+              .join(' & '),
+            summary: data.summary,
+            imageId: data.thumbnail_url,
+            appUrl: data.app_url,
+            videoUrl: videoUrl,
+            description: `Pain Point:\n${data.pain_point}\n\nSolution:\n${data.solution}`,
+            round: 'preliminary',
+          });
+        } else {
+          setSubmission(null);
+        }
+        setLoading(false);
+      };
+
+      fetchSubmission();
+    }
+  }, [params.id]);
+
+  if (loading) {
+    return (
+      <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
+        <Skeleton className="h-8 w-48 mb-8" />
+        <div className="space-y-6 mb-10">
+           <Skeleton className="h-12 w-3/4" />
+           <Skeleton className="h-6 w-1/2" />
+        </div>
+        <Skeleton className="w-full aspect-video rounded-md" />
+      </div>
+    )
+  }
 
   if (!submission) {
     notFound();
   }
 
-  const submissionId = `Proj-${String(submissionIndex + 1).padStart(2, '0')}`;
-  
   const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
+  const submissionId = `Proj-${submission.id.substring(0, 4)}`;
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
@@ -85,7 +160,7 @@ export default async function SubmissionDetailPage({
                     src={submission.imageId}
                     alt={`${submission.title} thumbnail`}
                     fill
-                    style={{ objectFit: 'contain' }} // Use contain to show the whole image
+                    style={{ objectFit: 'contain' }}
                     className="bg-muted"
                     unoptimized
                   />
@@ -109,20 +184,22 @@ export default async function SubmissionDetailPage({
       </div>
 
       <div className="text-center flex justify-center gap-4">
-        <Button size="lg" asChild>
-          <a
-            href={submission.appUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center"
-          >
-            Try App <ExternalLink className="ml-2 h-5 w-5" />
-          </a>
-        </Button>
-         {hasVideo && (
+        {submission.appUrl && (
+          <Button size="lg" asChild>
+            <a
+              href={submission.appUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center"
+            >
+              Try App <ExternalLink className="ml-2 h-5 w-5" />
+            </a>
+          </Button>
+        )}
+        {hasVideo && (
             <Button size="lg" variant="secondary" asChild>
                <a
-                 href={submission.videoUrl.replace('/embed/','/watch?v=')}
+                 href={submission.videoUrl.includes('embed') ? submission.videoUrl.replace('/embed/','/watch?v=') : submission.videoUrl}
                  target="_blank"
                  rel="noopener noreferrer"
                >
@@ -133,25 +210,4 @@ export default async function SubmissionDetailPage({
       </div>
     </div>
   );
-}
-
-export async function generateStaticParams() {
-  const submissions = await fetchSubmissions();
-  return submissions.map((submission) => ({
-    id: submission.id,
-  }));
-}
-
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const submissions = await fetchSubmissions();
-  const submission = submissions.find((s) => s.id === params.id);
-  if (!submission) {
-    return {
-      title: 'Submission Not Found',
-    };
-  }
-  return {
-    title: `${submission.title} | Hackathon Submission`,
-    description: submission.summary,
-  };
 }

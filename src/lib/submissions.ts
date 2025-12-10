@@ -10,5 +10,5 @@ export type Submission = {
   round: 'preliminary' | 'final';
 };
 
-// Static submissions are no longer needed as they are fetched from the Google Sheet.
+// Static submissions are no longer needed as they are fetched from Firestore.
 export const submissions: Submission[] = [];

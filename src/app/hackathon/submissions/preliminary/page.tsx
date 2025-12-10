@@ -1,3 +1,4 @@
+'use client';
 import {
   Card,
   CardContent,
@@ -9,16 +10,45 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Users } from 'lucide-react';
 import Link from 'next/link';
-import { fetchSubmissions } from '@/lib/submissions-fetcher';
+import { Submission } from '@/lib/submissions';
+import { db } from '@/firebase/config';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 
-export default async function PreliminarySubmissionsPage() {
-  const preliminarySubmissions = await fetchSubmissions();
+export default function PreliminarySubmissionsPage() {
+  const [submissions, setSubmissions] = useState<Submission[]>([]);
+
+  useEffect(() => {
+    const q = query(collection(db, 'submissions'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const submissionsData: Submission[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        submissionsData.push({
+          id: doc.id,
+          title: data.project_name,
+          participants: [data.participant1, data.participant2]
+            .filter(Boolean)
+            .join(' & '),
+          summary: data.summary,
+          imageId: data.thumbnail_url,
+          appUrl: data.app_url,
+          videoUrl: data.video_url,
+          description: '', // This can be populated if needed from other fields
+          round: 'preliminary', // Or determined by a field in firestore
+        });
+      });
+      setSubmissions(submissionsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
-      {preliminarySubmissions.length > 0 ? (
+      {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {preliminarySubmissions.map((submission, index) => {
+          {submissions.map((submission, index) => {
             const submissionId = `Proj-${String(index + 1).padStart(2, '0')}`;
             return (
               <Link
@@ -36,7 +66,7 @@ export default async function PreliminarySubmissionsPage() {
                           fill
                           style={{ objectFit: 'cover' }}
                           className="rounded-t-xl bg-muted"
-                          unoptimized // Required for external URLs without a defined hostname
+                          unoptimized
                         />
                       </div>
                     )}
@@ -66,7 +96,7 @@ export default async function PreliminarySubmissionsPage() {
       ) : (
         <div className="w-full text-center p-8 border rounded-lg bg-muted/20">
           <p className="text-muted-foreground">
-            Project submissions for the preliminary round will appear here.
+            Loading project submissions...
           </p>
         </div>
       )}
