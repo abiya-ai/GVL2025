@@ -54,7 +54,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
   const embeddedContent = () => {
     if (hasLabDoc) {
       return (
-        <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+        <div className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12 bg-background">
         <Card className="overflow-hidden">
           <CardHeader>
             <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
@@ -97,7 +97,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
     
     if (hasCheatsheet) {
       return (
-        <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+        <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12 bg-background">
           <Card className="overflow-hidden">
             <CardHeader>
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
@@ -140,7 +140,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
 
     if (hasSlides) {
       return (
-         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12">
+         <div id="slides" className="container mx-auto max-w-7xl px-4 pb-8 md:pb-12 bg-background">
           <Card className="overflow-hidden">
             <CardHeader>
               <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
@@ -186,7 +186,7 @@ export default function SessionPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
+      <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12 bg-background">
         <Button variant="ghost" className="mb-8" asChild>
           <Link href="/#sessions">
             <ArrowLeft className="mr-2 h-4 w-4" />

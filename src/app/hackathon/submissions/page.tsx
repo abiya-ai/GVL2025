@@ -18,7 +18,7 @@ export default function SubmissionsPage() {
   const imageMap = new Map(PlaceHolderImages.map((img) => [img.id, img]));
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
+    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12 bg-background">
       <Button asChild variant="ghost" className="mb-8">
         <Link href="/hackathon">
           <ArrowLeft className="mr-2 h-4 w-4" />

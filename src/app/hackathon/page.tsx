@@ -16,7 +16,7 @@ const onePagerUrl =
 
 export default function HackathonPage() {
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12">
+    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12 bg-background">
       <div className="flex flex-col sm:flex-row justify-between items-start mb-12 gap-4">
         <h1 className="text-4xl font-bold tracking-tight font-headline md:text-5xl">
           Hackathon
