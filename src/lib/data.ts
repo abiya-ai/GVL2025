@@ -51,7 +51,7 @@ export const sessions: Session[] = [
     imageId: 'session-typescript',
     recordingUrl: '#',
     slidesUrl: 'https://docs.google.com/presentation/d/10iOEksxqNCxIGfUYuIsn7lKWp1o5GVYQ9VtUbrJpbLY/edit?usp=sharing',
-    labDocUrl: '',
+    labDocUrl: 'https://docs.google.com/document/d/1e7KL0g2j5FhBrW-r5Orl1iEuaFQARX19_TRtpH-dW2Q/edit?usp=sharing',
     date: '2025-12-10',
   },
 ];
