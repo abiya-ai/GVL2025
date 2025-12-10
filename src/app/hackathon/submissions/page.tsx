@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Inbox } from 'lucide-react';
 import Link from 'next/link';
@@ -26,12 +27,9 @@ export default function SubmissionsPage() {
         </Link>
       </Button>
       <div className="flex flex-col items-center text-center">
-        <div className="flex items-center gap-4 mb-4">
-          <Inbox className="w-12 h-12 text-primary" />
-          <h1 className="text-4xl font-bold tracking-tight font-headline md:text-5xl">
-            Hackathon Submissions
-          </h1>
-        </div>
+        <h1 className="text-4xl font-bold tracking-tight font-headline md:text-5xl mb-4">
+          Hackathon Submissions 🚀
+        </h1>
         <p className="mb-12 text-lg text-muted-foreground">
           Welcome, Judges! We're excited for you to see the innovative projects
           submitted. ✨
