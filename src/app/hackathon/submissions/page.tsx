@@ -31,8 +31,9 @@ export default function SubmissionsPage() {
           Hackathon Submissions 🚀
         </h1>
         <p className="mb-12 text-lg text-muted-foreground">
-          Welcome, Judges! We're excited for you to see the innovative projects
-          submitted. ✨
+          Welcome, Judges! We're excited for you to see the innovative
+          <br />
+          projects submitted. ✨
         </p>
         {submissions.length > 0 ? (
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
