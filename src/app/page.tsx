@@ -107,7 +107,7 @@ export default function Home() {
                   <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                     <CardHeader className="p-0">
                       {image && (
-                        <div className="relative w-full h-48">
+                        <div className="relative w-full aspect-video">
                           <Image
                             src={image.imageUrl}
                             alt={image.description}
@@ -187,7 +187,7 @@ export default function Home() {
                           className="block"
                         >
                           {image && (
-                            <div className="relative w-full h-48">
+                            <div className="relative w-full aspect-video">
                               <Image
                                 src={image.imageUrl}
                                 alt={image.description}
