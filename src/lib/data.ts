@@ -49,7 +49,7 @@ export const sessions: Session[] = [
     description:
       'Discover how to integrate various Google services into your app and learn the best practices for sharing your creation with the world.',
     imageId: 'session-typescript',
-    recordingUrl: '#',
+    recordingUrl: 'https://drive.google.com/file/d/1F7JZ0U4USkuXoFdP8Mlfzr7902-Iq0kf/view?usp=drive_link',
     slidesUrl: 'https://docs.google.com/presentation/d/10iOEksxqNCxIGfUYuIsn7lKWp1o5GVYQ9VtUbrJpbLY/edit?usp=sharing',
     labDocUrl: 'https://docs.google.com/document/d/1e7KL0g2j5FhBrW-r5Orl1iEuaFQARX19_TRtpH-dW2Q/edit?usp=sharing',
     date: '2025-12-10',
