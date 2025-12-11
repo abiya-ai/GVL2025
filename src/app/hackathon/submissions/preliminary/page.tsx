@@ -16,6 +16,16 @@ import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
+function generateProjectId(title: string, id: string): string {
+  const acronym = title
+    .split(' ')
+    .map((word) => word[0])
+    .join('')
+    .toUpperCase();
+  const uniqueSuffix = id.substring(0, 4).toUpperCase();
+  return `${acronym}-${uniqueSuffix}`;
+}
+
 export default function PreliminarySubmissionsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -39,7 +49,8 @@ export default function PreliminarySubmissionsPage() {
           imageId: data.thumbnail_url,
           appUrl: data.app_url,
           videoUrl: data.video_url,
-          description: '', // This can be populated if needed from other fields
+          painPoint: data.pain_point || '',
+          solution: data.solution || '',
           round: data.round,
         });
       });
@@ -75,7 +86,10 @@ export default function PreliminarySubmissionsPage() {
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
-            const submissionId = `Proj-${submission.id.substring(0, 4)}`;
+            const submissionId = generateProjectId(
+              submission.title,
+              submission.id
+            );
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
