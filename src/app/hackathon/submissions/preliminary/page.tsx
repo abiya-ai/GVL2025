@@ -10,14 +10,14 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Users } from 'lucide-react';
 import Link from 'next/link';
-import { Submission } from '@/lib/submissions';
+import type { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
 import {
   collection,
   onSnapshot,
   query,
   where,
-  orderBy,
+  Timestamp,
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -40,8 +40,7 @@ export default function PreliminarySubmissionsPage() {
   useEffect(() => {
     const q = query(
       collection(db, 'submissions'),
-      where('round', '==', 'preliminary'),
-      orderBy('timestamp', 'desc')
+      where('round', '==', 'preliminary')
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const submissionsData: Submission[] = [];
@@ -63,6 +62,14 @@ export default function PreliminarySubmissionsPage() {
           timestamp: data.timestamp,
         });
       });
+
+      // Sort by timestamp on the client side
+      submissionsData.sort((a, b) => {
+        const dateA = a.timestamp instanceof Timestamp ? a.timestamp.toDate() : new Date(0);
+        const dateB = b.timestamp instanceof Timestamp ? b.timestamp.toDate() : new Date(0);
+        return dateB.getTime() - dateA.getTime();
+      });
+
       setSubmissions(submissionsData);
       setLoading(false);
     });
