@@ -61,7 +61,7 @@ export default function SubmissionDetailPage({
         if (docSnap.exists()) {
           const data = docSnap.data();
           const videoUrl = getYouTubeEmbedUrl(data.video_url) || data.video_url;
-          
+
           setSubmission({
             id: docSnap.id,
             title: data.project_name,
@@ -72,7 +72,8 @@ export default function SubmissionDetailPage({
             imageId: data.thumbnail_url,
             appUrl: data.app_url,
             videoUrl: videoUrl,
-            description: `Pain Point:\n${data.pain_point}\n\nSolution:\n${data.solution}`,
+            painPoint: data.pain_point,
+            solution: data.solution,
             round: 'preliminary',
           });
         } else {
@@ -90,12 +91,12 @@ export default function SubmissionDetailPage({
       <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
         <Skeleton className="h-8 w-48 mb-8" />
         <div className="space-y-6 mb-10">
-           <Skeleton className="h-12 w-3/4" />
-           <Skeleton className="h-6 w-1/2" />
+          <Skeleton className="h-12 w-3/4" />
+          <Skeleton className="h-6 w-1/2" />
         </div>
         <Skeleton className="w-full aspect-video rounded-md" />
       </div>
-    )
+    );
   }
 
   if (!submission) {
@@ -175,10 +176,23 @@ export default function SubmissionDetailPage({
             <CardTitle>Project Details</CardTitle>
             <CardDescription>{submission.summary}</CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className="whitespace-pre-wrap text-foreground/80">
-              {submission.description}
-            </p>
+          <CardContent className="space-y-6">
+            <div>
+              <h3 className="font-semibold text-lg mb-2 font-headline">
+                The Pain Point
+              </h3>
+              <p className="whitespace-pre-wrap text-foreground/80">
+                {submission.painPoint}
+              </p>
+            </div>
+            <div className="border-t pt-6">
+              <h3 className="font-semibold text-lg mb-2 font-headline">
+                The Solution
+              </h3>
+              <p className="whitespace-pre-wrap text-foreground/80">
+                {submission.solution}
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -197,16 +211,20 @@ export default function SubmissionDetailPage({
           </Button>
         )}
         {hasVideo && (
-            <Button size="lg" variant="secondary" asChild>
-               <a
-                 href={submission.videoUrl.includes('embed') ? submission.videoUrl.replace('/embed/','/watch?v=') : submission.videoUrl}
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >
-                 <Video className="mr-2 h-5 w-5" /> Watch Video
-               </a>
-            </Button>
-         )}
+          <Button size="lg" variant="secondary" asChild>
+            <a
+              href={
+                submission.videoUrl.includes('embed')
+                  ? submission.videoUrl.replace('/embed/', '/watch?v=')
+                  : submission.videoUrl
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Video className="mr-2 h-5 w-5" /> Watch Video
+            </a>
+          </Button>
+        )}
       </div>
     </div>
   );

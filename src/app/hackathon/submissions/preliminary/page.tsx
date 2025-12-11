@@ -40,7 +40,7 @@ export default function PreliminarySubmissionsPage() {
           appUrl: data.app_url,
           videoUrl: data.video_url,
           description: '', // This can be populated if needed from other fields
-          round: 'preliminary',
+          round: data.round,
         });
       });
       setSubmissions(submissionsData);
