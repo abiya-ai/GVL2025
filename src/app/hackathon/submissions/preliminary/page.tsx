@@ -63,7 +63,7 @@ export default function PreliminarySubmissionsPage() {
         });
       });
 
-      // Sort by timestamp on the client side
+      // Sort by timestamp on the client side in descending order
       submissionsData.sort((a, b) => {
         const dateA = a.timestamp instanceof Timestamp ? a.timestamp.toDate() : new Date(0);
         const dateB = b.timestamp instanceof Timestamp ? b.timestamp.toDate() : new Date(0);
