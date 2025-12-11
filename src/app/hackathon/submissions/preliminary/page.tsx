@@ -10,28 +10,11 @@ import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
 import { Users } from 'lucide-react';
 import Link from 'next/link';
-import type { Submission } from '@/lib/submissions';
+import { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  Timestamp,
-} from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
-
-function generateProjectId(title: string, id: string): string {
-  if (!title) return id.substring(0, 4).toUpperCase();
-  const acronym = title
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .toUpperCase();
-  const uniqueSuffix = id.substring(0, 4).toUpperCase();
-  return `${acronym}-${uniqueSuffix}`;
-}
 
 export default function PreliminarySubmissionsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
@@ -56,20 +39,10 @@ export default function PreliminarySubmissionsPage() {
           imageId: data.thumbnail_url,
           appUrl: data.app_url,
           videoUrl: data.video_url,
-          painPoint: data.pain_point || '',
-          solution: data.solution || '',
-          round: data.round,
-          timestamp: data.timestamp,
+          description: '', // This can be populated if needed from other fields
+          round: 'preliminary',
         });
       });
-
-      // Sort by timestamp on the client side in descending order
-      submissionsData.sort((a, b) => {
-        const dateA = a.timestamp instanceof Timestamp ? a.timestamp.toDate() : new Date(0);
-        const dateB = b.timestamp instanceof Timestamp ? b.timestamp.toDate() : new Date(0);
-        return dateB.getTime() - dateA.getTime();
-      });
-
       setSubmissions(submissionsData);
       setLoading(false);
     });
@@ -102,11 +75,7 @@ export default function PreliminarySubmissionsPage() {
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
-            const submissionId = generateProjectId(
-              submission.title,
-              submission.id
-            );
-            const isNewest = index === 0;
+            const submissionId = `Proj-${submission.id.substring(0, 4)}`;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
@@ -114,14 +83,7 @@ export default function PreliminarySubmissionsPage() {
                 className="group block text-left"
               >
                 <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
-                  <CardHeader className="p-0 relative">
-                    {isNewest && (
-                       <div className="absolute top-2 left-2 z-10">
-                        <Badge className="bg-destructive text-destructive-foreground animate-pulse">
-                          New 🔥
-                        </Badge>
-                      </div>
-                    )}
+                  <CardHeader className="p-0">
                     {submission.imageId && (
                       <div className="relative w-full aspect-video">
                         <Image
