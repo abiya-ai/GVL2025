@@ -12,11 +12,18 @@ import { Users } from 'lucide-react';
 import Link from 'next/link';
 import { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 function generateProjectId(title: string, id: string): string {
+  if (!title) return id.substring(0, 4).toUpperCase();
   const acronym = title
     .split(' ')
     .map((word) => word[0])
@@ -33,7 +40,8 @@ export default function PreliminarySubmissionsPage() {
   useEffect(() => {
     const q = query(
       collection(db, 'submissions'),
-      where('round', '==', 'preliminary')
+      where('round', '==', 'preliminary'),
+      orderBy('timestamp', 'desc')
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const submissionsData: Submission[] = [];
@@ -52,6 +60,7 @@ export default function PreliminarySubmissionsPage() {
           painPoint: data.pain_point || '',
           solution: data.solution || '',
           round: data.round,
+          timestamp: data.timestamp,
         });
       });
       setSubmissions(submissionsData);
@@ -90,6 +99,7 @@ export default function PreliminarySubmissionsPage() {
               submission.title,
               submission.id
             );
+            const isNewest = index === 0;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
@@ -97,7 +107,14 @@ export default function PreliminarySubmissionsPage() {
                 className="group block text-left"
               >
                 <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
-                  <CardHeader className="p-0">
+                  <CardHeader className="p-0 relative">
+                    {isNewest && (
+                       <div className="absolute top-2 right-2 z-10">
+                        <Badge className="bg-destructive text-destructive-foreground animate-pulse">
+                          New 🔥
+                        </Badge>
+                      </div>
+                    )}
                     {submission.imageId && (
                       <div className="relative w-full aspect-video">
                         <Image

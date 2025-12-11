@@ -9,6 +9,7 @@ export type Submission = {
   appUrl: string;
   videoUrl: string;
   round: 'preliminary' | 'final';
+  timestamp?: any;
 };
 
 // Static submissions are no longer needed as they are fetched from Firestore.
