@@ -12,14 +12,19 @@ import { Users } from 'lucide-react';
 import Link from 'next/link';
 import { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PreliminarySubmissionsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const q = query(collection(db, 'submissions'));
+    const q = query(
+      collection(db, 'submissions'),
+      where('round', '==', 'preliminary')
+    );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const submissionsData: Submission[] = [];
       querySnapshot.forEach((doc) => {
@@ -35,21 +40,42 @@ export default function PreliminarySubmissionsPage() {
           appUrl: data.app_url,
           videoUrl: data.video_url,
           description: '', // This can be populated if needed from other fields
-          round: 'preliminary', // Or determined by a field in firestore
+          round: 'preliminary',
         });
       });
       setSubmissions(submissionsData);
+      setLoading(false);
     });
 
     return () => unsubscribe();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[...Array(3)].map((_, i) => (
+          <Card key={i} className="h-full overflow-hidden rounded-xl">
+            <CardHeader className="p-0">
+              <Skeleton className="w-full aspect-video rounded-t-xl" />
+            </CardHeader>
+            <CardContent className="p-6">
+              <Skeleton className="h-6 w-3/4 mb-2" />
+              <Skeleton className="h-4 w-1/2 mb-4" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-5/6 mt-2" />
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <>
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
-            const submissionId = `Proj-${String(index + 1).padStart(2, '0')}`;
+            const submissionId = `Proj-${submission.id.substring(0, 4)}`;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
@@ -96,7 +122,7 @@ export default function PreliminarySubmissionsPage() {
       ) : (
         <div className="w-full text-center p-8 border rounded-lg bg-muted/20">
           <p className="text-muted-foreground">
-            Loading project submissions...
+            No preliminary round submissions found.
           </p>
         </div>
       )}
