@@ -116,7 +116,7 @@ export default function PreliminarySubmissionsPage() {
                 <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                   <CardHeader className="p-0 relative">
                     {isNewest && (
-                       <div className="absolute top-2 right-2 z-10">
+                       <div className="absolute top-2 left-2 z-10">
                         <Badge className="bg-destructive text-destructive-foreground animate-pulse">
                           New 🔥
                         </Badge>
