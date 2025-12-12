@@ -53,7 +53,7 @@ export default function SubmissionDetailPage({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const { id } = params;
+    const id = params.id;
     if (id) {
       const fetchSubmission = async () => {
         const docRef = doc(db, 'submissions', id);
