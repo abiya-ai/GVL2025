@@ -54,9 +54,17 @@ export default function PreliminarySubmissionsPage() {
         });
 
         // 1. Sort chronologically from OLDEST to NEWEST for ID assignment and display
+        // const sortedSubmissions = submissionsData.sort((a, b) => {
+        //   const timeA = a.timestamp ? a.timestamp.getTime() : 0;
+        //   const timeB = b.timestamp ? b.timestamp.getTime() : 0;
+        //   return timeA - timeB;
+        // });
+
         const sortedSubmissions = submissionsData.sort((a, b) => {
-          const timeA = a.timestamp ? a.timestamp.getTime() : 0;
-          const timeB = b.timestamp ? b.timestamp.getTime() : 0;
+          // Use Date.now() for missing timestamps so they are treated as "Newest" 
+          // instead of "Oldest" (which 0 would represent).
+          const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
+          const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
           return timeA - timeB;
         });
 
