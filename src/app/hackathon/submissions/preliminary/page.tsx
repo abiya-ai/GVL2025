@@ -43,7 +43,6 @@ export default function PreliminarySubmissionsPage() {
             painPoint: data.pain_point,
             solution: data.solution,
             round: 'preliminary',
-            // Directly convert to Date object here
             timestamp:
               data.timestamp instanceof Timestamp
                 ? data.timestamp.toDate()
@@ -58,15 +57,13 @@ export default function PreliminarySubmissionsPage() {
           return timeA - timeB;
         });
 
-        // 2. Assign chronological IDs and reverse for display
-        const finalSubmissions: SubmissionWithId[] = [];
-        chronologicallySorted.forEach((sub, index) => {
-          // Add to the beginning of the array to reverse the order for display
-          finalSubmissions.unshift({
+        // 2. Assign chronological IDs
+        const finalSubmissions: SubmissionWithId[] = chronologicallySorted.map(
+          (sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          });
-        });
+          })
+        );
 
         setSubmissions(finalSubmissions);
         setLoading(false);
