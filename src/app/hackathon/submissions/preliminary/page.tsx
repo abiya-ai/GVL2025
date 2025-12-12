@@ -52,23 +52,24 @@ export default function PreliminarySubmissionsPage() {
           });
         });
 
-        // 1. Sort chronologically from NEWEST to OLDEST (Descending)
-        // This puts "The Ward" (Newest) at index 0.
+        // 1. Sort chronologically from OLDEST to NEWEST
+        // We use 0 for missing timestamps so they default to "Oldest" (1970)
+        // This ensures "The Ward" (if it has a null timestamp) stays at index 0.
         const sortedSubmissions = submissionsData.sort((a, b) => {
-          const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
-          const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
-          return timeB - timeA; // Swapped to b - a for Descending order
+          const timeA = a.timestamp ? a.timestamp.getTime() : 0;
+          const timeB = b.timestamp ? b.timestamp.getTime() : 0;
+          return timeA - timeB; // Ascending order
         });
 
-        // 2. Assign IDs based on this sorted list
-        // Index 0 ("The Ward") becomes Proj-01
-        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
-          (sub, index) => ({
+        // 2. Assign IDs based on this chronological order
+        // Index 0 (Oldest) -> Proj-01
+        // Index 5 (Newest) -> Proj-06
+        const finalSubmissions: SubmissionWithId[] = sortedSubmissions
+          .map((sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          })
-        );
-        // No .reverse() needed because we already sorted Newest -> Oldest
+          }))
+          .reverse(); // 3. Reverse so Newest (Proj-06) is shown at the top of the page
 
         setSubmissions(finalSubmissions);
         setLoading(false);
