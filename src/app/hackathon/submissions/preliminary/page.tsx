@@ -1,4 +1,3 @@
-
 'use client';
 import {
   Card,
@@ -36,6 +35,12 @@ export default function PreliminarySubmissionsPage() {
         const submissionsData: Submission[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          // Immediately convert Firestore Timestamp to JS Date object
+          const timestamp =
+            data.timestamp && data.timestamp.toDate
+              ? data.timestamp.toDate()
+              : null;
+
           submissionsData.push({
             id: doc.id,
             title: data.project_name,
@@ -49,14 +54,11 @@ export default function PreliminarySubmissionsPage() {
             painPoint: data.pain_point,
             solution: data.solution,
             round: 'preliminary',
-            timestamp:
-              data.timestamp instanceof Timestamp
-                ? data.timestamp.toDate()
-                : null,
+            timestamp: timestamp, // Store as Date object or null
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST
+        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment
         const sortedSubmissions = submissionsData.sort((a, b) => {
           const timeA = a.timestamp ? a.timestamp.getTime() : 0;
           const timeB = b.timestamp ? b.timestamp.getTime() : 0;
