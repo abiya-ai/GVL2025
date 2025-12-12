@@ -107,7 +107,8 @@ export default function SubmissionDetailPage({
   }
 
   const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
-  const submissionId = pid || `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
+  const submissionId =
+    pid || `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
@@ -137,7 +138,26 @@ export default function SubmissionDetailPage({
         {hasVideo ? (
           <Card>
             <CardHeader>
-              <CardTitle>Video Demo</CardTitle>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>Video Demo</CardTitle>
+                {hasVideo && (
+                  <Button variant="link" asChild className="p-0 h-auto">
+                    <a
+                      href={
+                        submission.videoUrl.includes('embed')
+                          ? submission.videoUrl.replace('/embed/', '/watch?v=')
+                          : submission.videoUrl
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm"
+                    >
+                      Open video in new tab
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
+                )}
+              </div>
             </CardHeader>
             <CardContent>
               <div className="relative aspect-video w-full overflow-hidden rounded-md border">
@@ -210,21 +230,6 @@ export default function SubmissionDetailPage({
               className="inline-flex items-center"
             >
               Try App <ExternalLink className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
-        )}
-        {hasVideo && (
-          <Button size="lg" variant="secondary" asChild>
-            <a
-              href={
-                submission.videoUrl.includes('embed')
-                  ? submission.videoUrl.replace('/embed/', '/watch?v=')
-                  : submission.videoUrl
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Video className="mr-2 h-5 w-5" /> Watch Video
             </a>
           </Button>
         )}
