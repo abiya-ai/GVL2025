@@ -112,7 +112,7 @@ export default function PreliminarySubmissionsPage() {
 
             return (
               <Link
-                href={`/hackathon/submissions/${submission.id}`}
+                href={`/hackathon/submissions/${submission.id}?pid=${submissionId}`}
                 key={submission.id}
                 className="group block text-left"
               >

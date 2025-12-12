@@ -1,5 +1,5 @@
 'use client';
-import { notFound } from 'next/navigation';
+import { notFound, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, Users, ExternalLink, Video } from 'lucide-react';
 import Link from 'next/link';
@@ -51,6 +51,8 @@ export default function SubmissionDetailPage({
 }) {
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
+  const pid = searchParams.get('pid');
 
   useEffect(() => {
     const id = params.id;
@@ -105,7 +107,7 @@ export default function SubmissionDetailPage({
   }
 
   const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
-  const submissionId = `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
+  const submissionId = pid || `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">
