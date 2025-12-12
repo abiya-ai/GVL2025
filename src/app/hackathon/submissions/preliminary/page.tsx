@@ -53,28 +53,22 @@ export default function PreliminarySubmissionsPage() {
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment and display
-        // const sortedSubmissions = submissionsData.sort((a, b) => {
-        //   const timeA = a.timestamp ? a.timestamp.getTime() : 0;
-        //   const timeB = b.timestamp ? b.timestamp.getTime() : 0;
-        //   return timeA - timeB;
-        // });
-
+        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment
         const sortedSubmissions = submissionsData.sort((a, b) => {
-          // Use Date.now() for missing timestamps so they are treated as "Newest" 
-          // instead of "Oldest" (which 0 would represent).
+          // Use Date.now() for missing timestamps so they are treated as "Newest"
+          // and end up at the bottom of the chronological list (getting higher IDs)
           const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
           const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
           return timeA - timeB;
         });
 
-        // 2. Assign chronological IDs based on the sorted list
-        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
-          (sub, index) => ({
+        // 2. Assign chronological IDs and then REVERSE for display
+        const finalSubmissions: SubmissionWithId[] = sortedSubmissions
+          .map((sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          })
-        );
+          }))
+          .reverse(); // <--- This ensures Newest cards appear at the top
 
         setSubmissions(finalSubmissions);
         setLoading(false);
