@@ -30,25 +30,16 @@ export default function PreliminarySubmissionsPage() {
         const submissionsData: Submission[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          
-          // --- ROBUST TIMESTAMP PARSING ---
-          let timestamp: Date | null = null;
 
-          if (data.timestamp) {
-            // Case 1: It's a Firestore Timestamp (has .toDate)
-            if (typeof data.timestamp.toDate === 'function') {
-              timestamp = data.timestamp.toDate();
-            } 
-            // Case 2: It's a String or Number (e.g., "2024-01-01" or 1709...)
-            else {
-              const parsedDate = new Date(data.timestamp);
-              // Check if valid
-              if (!isNaN(parsedDate.getTime())) {
-                timestamp = parsedDate;
-              }
+          let timestamp: Date | null = null;
+          if (data.timestamp && typeof data.timestamp.toDate === 'function') {
+            timestamp = data.timestamp.toDate();
+          } else if (data.timestamp) {
+            const parsedDate = new Date(data.timestamp);
+            if (!isNaN(parsedDate.getTime())) {
+              timestamp = parsedDate;
             }
           }
-          // -------------------------------
 
           submissionsData.push({
             id: doc.id,
@@ -63,30 +54,26 @@ export default function PreliminarySubmissionsPage() {
             painPoint: data.pain_point,
             solution: data.solution,
             round: 'preliminary',
-            timestamp: timestamp, 
+            timestamp: timestamp,
           });
         });
 
         // 1. Sort chronologically from OLDEST to NEWEST
-        // We handle missing dates by treating them as "Now" (Newest)
         const sortedSubmissions = submissionsData.sort((a, b) => {
           const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
           const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
           
-          // Primary Sort: Time
           if (timeA !== timeB) return timeA - timeB;
-
-          // Secondary Sort: Alphabetical (Stable tie-breaker)
           return a.title.localeCompare(b.title);
         });
 
-        // 2. Assign IDs (Oldest = Proj-01) & Reverse for Display (Newest at Top)
-        const finalSubmissions: SubmissionWithId[] = sortedSubmissions
-          .map((sub, index) => ({
+        // 2. Assign IDs
+        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
+          (sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          }))
-          .reverse();
+          })
+        );
 
         setSubmissions(finalSubmissions);
         setLoading(false);
@@ -124,7 +111,8 @@ export default function PreliminarySubmissionsPage() {
     <>
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {submissions.map((submission) => {
+          {submissions.map((submission, index) => {
+            const isNewest = index === submissions.length - 1;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}?pid=${submission.displayId}`}
@@ -132,6 +120,11 @@ export default function PreliminarySubmissionsPage() {
                 className="group block text-left"
               >
                 <Card className="relative h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
+                  {isNewest && (
+                    <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground font-bold py-1 px-3 z-10">
+                      New 🔥
+                    </Badge>
+                  )}
                   <CardHeader className="p-0">
                     {submission.imageId && (
                       <div className="relative w-full aspect-video">
