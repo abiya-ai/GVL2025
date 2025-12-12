@@ -31,12 +31,24 @@ export default function PreliminarySubmissionsPage() {
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           
-          // Handle timestamp: Default to "Now" if missing so it counts as "Newest"
-          // This ensures actual old projects (like The Ward) stay at the start of the line.
-          const timestamp =
-            data.timestamp && data.timestamp.toDate
-              ? data.timestamp.toDate()
-              : new Date(); 
+          // --- ROBUST TIMESTAMP PARSING ---
+          let timestamp: Date | null = null;
+
+          if (data.timestamp) {
+            // Case 1: It's a Firestore Timestamp (has .toDate)
+            if (typeof data.timestamp.toDate === 'function') {
+              timestamp = data.timestamp.toDate();
+            } 
+            // Case 2: It's a String or Number (e.g., "2024-01-01" or 1709...)
+            else {
+              const parsedDate = new Date(data.timestamp);
+              // Check if valid
+              if (!isNaN(parsedDate.getTime())) {
+                timestamp = parsedDate;
+              }
+            }
+          }
+          // -------------------------------
 
           submissionsData.push({
             id: doc.id,
@@ -51,31 +63,30 @@ export default function PreliminarySubmissionsPage() {
             painPoint: data.pain_point,
             solution: data.solution,
             round: 'preliminary',
-            timestamp: timestamp,
+            timestamp: timestamp, 
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment
+        // 1. Sort chronologically from OLDEST to NEWEST
+        // We handle missing dates by treating them as "Now" (Newest)
         const sortedSubmissions = submissionsData.sort((a, b) => {
           const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
           const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
           
-          // Primary Sort: Time (Ascending)
+          // Primary Sort: Time
           if (timeA !== timeB) return timeA - timeB;
 
-          // Secondary Sort (Tie-Breaker): Alphabetical by Title
-          // This ensures that if timestamps are identical (or all missing), the order doesn't jump around randomly.
+          // Secondary Sort: Alphabetical (Stable tie-breaker)
           return a.title.localeCompare(b.title);
         });
 
-        // 2. Assign chronological IDs (Oldest gets Proj-01)
-        // 3. Reverse for display (Newest appears at the top of the page)
+        // 2. Assign IDs (Oldest = Proj-01) & Reverse for Display (Newest at Top)
         const finalSubmissions: SubmissionWithId[] = sortedSubmissions
           .map((sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
           }))
-          .reverse(); 
+          .reverse();
 
         setSubmissions(finalSubmissions);
         setLoading(false);
