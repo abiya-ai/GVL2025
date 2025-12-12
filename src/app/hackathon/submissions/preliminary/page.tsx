@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
-import { Users, Clock } from 'lucide-react';
+import { Users } from 'lucide-react';
 import Link from 'next/link';
 import { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
@@ -110,10 +110,6 @@ export default function PreliminarySubmissionsPage() {
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission) => {
-            const submissionDate = submission.timestamp
-              ? submission.timestamp.toLocaleString()
-              : 'No timestamp';
-
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}?pid=${submission.displayId}`}
@@ -145,13 +141,9 @@ export default function PreliminarySubmissionsPage() {
                           {submission.displayId}
                         </Badge>
                       </div>
-                      <div className="flex items-center text-sm text-muted-foreground mb-1">
+                      <div className="flex items-center text-sm text-muted-foreground mb-4">
                         <Users className="mr-2 h-4 w-4" />
                         <span>{submission.participants}</span>
-                      </div>
-                      <div className="flex items-center text-xs text-muted-foreground mb-4">
-                        <Clock className="mr-2 h-3 w-3" />
-                        <span>{submissionDate}</span>
                       </div>
                       <CardDescription className="text-foreground/80">
                         {submission.summary}
