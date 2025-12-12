@@ -19,6 +19,9 @@ import { Skeleton } from '@/components/ui/skeleton';
 export default function PreliminarySubmissionsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
+  const [submissionIdMap, setSubmissionIdMap] = useState<Map<string, number>>(
+    new Map()
+  );
 
   useEffect(() => {
     const q = query(
@@ -45,18 +48,30 @@ export default function PreliminarySubmissionsPage() {
           timestamp: data.timestamp,
         });
       });
-      // Sort client-side to find the newest submission
-      submissionsData.sort((a, b) => {
+
+      // Sort oldest to newest to create chronological IDs
+      const chronologicallySorted = [...submissionsData].sort((a, b) => {
         const aSeconds = a.timestamp?.seconds || 0;
         const bSeconds = b.timestamp?.seconds || 0;
-        if (bSeconds - aSeconds !== 0) {
-          return bSeconds - aSeconds;
+        if (aSeconds - bSeconds !== 0) {
+          return aSeconds - bSeconds;
         }
         const aNanos = a.timestamp?.nanoseconds || 0;
         const bNanos = b.timestamp?.nanoseconds || 0;
-        return bNanos - aNanos;
+        return aNanos - bNanos;
       });
-      setSubmissions(submissionsData);
+
+      // Create a map of submission ID to its chronological index
+      const newIdMap = new Map<string, number>();
+      chronologicallySorted.forEach((sub, index) => {
+        newIdMap.set(sub.id, index + 1);
+      });
+      setSubmissionIdMap(newIdMap);
+
+      // Sort newest to oldest for display
+      const displaySorted = chronologicallySorted.reverse();
+
+      setSubmissions(displaySorted);
       setLoading(false);
     });
 
@@ -89,7 +104,12 @@ export default function PreliminarySubmissionsPage() {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
             const isNewest = index === 0;
-            const submissionId = `Proj-${String(index + 1).padStart(2, '0')}`;
+            const chronologicalId = submissionIdMap.get(submission.id) || 0;
+            const submissionId = `Proj-${String(chronologicalId).padStart(
+              2,
+              '0'
+            )}`;
+
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
@@ -98,7 +118,7 @@ export default function PreliminarySubmissionsPage() {
               >
                 <Card className="relative h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
                   {isNewest && (
-                     <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground font-bold py-1 px-3 z-10">
+                    <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground font-bold py-1 px-3 z-10">
                       New 🔥
                     </Badge>
                   )}
