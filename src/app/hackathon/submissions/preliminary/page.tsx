@@ -142,7 +142,7 @@ export default function PreliminarySubmissionsPage() {
                         <CardTitle className="font-headline text-xl mb-1">
                           {submission.title}
                         </CardTitle>
-                        <Badge variant="outline">{submissionId}</Badge>
+                        <Badge variant="outline" className="whitespace-nowrap">{submissionId}</Badge>
                       </div>
                       <div className="flex items-center text-sm text-muted-foreground mb-4">
                         <Users className="mr-2 h-4 w-4" />
