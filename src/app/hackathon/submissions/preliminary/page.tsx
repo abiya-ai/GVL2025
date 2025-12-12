@@ -30,10 +30,13 @@ export default function PreliminarySubmissionsPage() {
         const submissionsData: Submission[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
+          
+          // Handle timestamp: Default to "Now" if missing so it counts as "Newest"
+          // This ensures actual old projects (like The Ward) stay at the start of the line.
           const timestamp =
             data.timestamp && data.timestamp.toDate
               ? data.timestamp.toDate()
-              : null;
+              : new Date(); 
 
           submissionsData.push({
             id: doc.id,
@@ -52,24 +55,27 @@ export default function PreliminarySubmissionsPage() {
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST
-        // We use 0 for missing timestamps so they default to "Oldest" (1970)
-        // This ensures "The Ward" (if it has a null timestamp) stays at index 0.
+        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment
         const sortedSubmissions = submissionsData.sort((a, b) => {
-          const timeA = a.timestamp ? a.timestamp.getTime() : 0;
-          const timeB = b.timestamp ? b.timestamp.getTime() : 0;
-          return timeA - timeB; // Ascending order
+          const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
+          const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
+          
+          // Primary Sort: Time (Ascending)
+          if (timeA !== timeB) return timeA - timeB;
+
+          // Secondary Sort (Tie-Breaker): Alphabetical by Title
+          // This ensures that if timestamps are identical (or all missing), the order doesn't jump around randomly.
+          return a.title.localeCompare(b.title);
         });
 
-        // 2. Assign IDs based on this chronological order
-        // Index 0 (Oldest) -> Proj-01
-        // Index 5 (Newest) -> Proj-06
+        // 2. Assign chronological IDs (Oldest gets Proj-01)
+        // 3. Reverse for display (Newest appears at the top of the page)
         const finalSubmissions: SubmissionWithId[] = sortedSubmissions
           .map((sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
           }))
-          .reverse(); // 3. Reverse so Newest (Proj-06) is shown at the top of the page
+          .reverse(); 
 
         setSubmissions(finalSubmissions);
         setLoading(false);
