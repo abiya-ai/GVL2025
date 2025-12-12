@@ -51,9 +51,9 @@ export default function SubmissionDetailPage({
 }) {
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [loading, setLoading] = useState(true);
-  const { id } = params;
 
   useEffect(() => {
+    const { id } = params;
     if (id) {
       const fetchSubmission = async () => {
         const docRef = doc(db, 'submissions', id);
@@ -85,7 +85,7 @@ export default function SubmissionDetailPage({
 
       fetchSubmission();
     }
-  }, [id]);
+  }, [params]);
 
   if (loading) {
     return (
