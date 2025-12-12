@@ -30,7 +30,6 @@ export default function PreliminarySubmissionsPage() {
         const submissionsData: Submission[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          // Immediately convert Firestore Timestamp to JS Date object
           const timestamp =
             data.timestamp && data.timestamp.toDate
               ? data.timestamp.toDate()
@@ -49,26 +48,27 @@ export default function PreliminarySubmissionsPage() {
             painPoint: data.pain_point,
             solution: data.solution,
             round: 'preliminary',
-            timestamp: timestamp, // Store as Date object or null
+            timestamp: timestamp,
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST for ID assignment
+        // 1. Sort chronologically from NEWEST to OLDEST (Descending)
+        // This puts "The Ward" (Newest) at index 0.
         const sortedSubmissions = submissionsData.sort((a, b) => {
-          // Use Date.now() for missing timestamps so they are treated as "Newest"
-          // and end up at the bottom of the chronological list (getting higher IDs)
           const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
           const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
-          return timeA - timeB;
+          return timeB - timeA; // Swapped to b - a for Descending order
         });
 
-        // 2. Assign chronological IDs and then REVERSE for display
-        const finalSubmissions: SubmissionWithId[] = sortedSubmissions
-          .map((sub, index) => ({
+        // 2. Assign IDs based on this sorted list
+        // Index 0 ("The Ward") becomes Proj-01
+        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
+          (sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          }))
-          .reverse(); // <--- This ensures Newest cards appear at the top
+          })
+        );
+        // No .reverse() needed because we already sorted Newest -> Oldest
 
         setSubmissions(finalSubmissions);
         setLoading(false);
