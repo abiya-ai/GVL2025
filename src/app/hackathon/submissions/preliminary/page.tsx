@@ -35,6 +35,7 @@ export default function PreliminarySubmissionsPage() {
           if (data.timestamp && typeof data.timestamp.toDate === 'function') {
             timestamp = data.timestamp.toDate();
           } else if (data.timestamp) {
+            // Fallback for different timestamp formats if needed
             const parsedDate = new Date(data.timestamp);
             if (!isNaN(parsedDate.getTime())) {
               timestamp = parsedDate;
@@ -58,24 +59,30 @@ export default function PreliminarySubmissionsPage() {
           });
         });
 
-        // 1. Sort chronologically from OLDEST to NEWEST
-        const sortedSubmissions = submissionsData.sort((a, b) => {
-          const timeA = a.timestamp ? a.timestamp.getTime() : Date.now();
-          const timeB = b.timestamp ? b.timestamp.getTime() : Date.now();
-          
-          if (timeA !== timeB) return timeA - timeB;
-          return a.title.localeCompare(b.title);
+        // 1. Sort chronologically from OLDEST to NEWEST to assign IDs
+        const sortedForId = submissionsData.sort((a, b) => {
+          const timeA = a.timestamp ? a.timestamp.getTime() : 0;
+          const timeB = b.timestamp ? b.timestamp.getTime() : 0;
+          return timeA - timeB;
         });
 
-        // 2. Assign IDs
-        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
-          (sub, index) => ({
-            ...sub,
-            displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
-          })
+        // 2. Assign chronological IDs
+        const submissionsWithIds = sortedForId.map(
+          (sub, index) =>
+            ({
+              ...sub,
+              displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
+            } as SubmissionWithId)
         );
+        
+        // 3. Sort from NEWEST to OLDEST for display
+        const sortedForDisplay = submissionsWithIds.sort((a, b) => {
+          const timeA = a.timestamp ? a.timestamp.getTime() : 0;
+          const timeB = b.timestamp ? b.timestamp.getTime() : 0;
+          return timeB - timeA;
+        });
 
-        setSubmissions(finalSubmissions);
+        setSubmissions(sortedForDisplay);
         setLoading(false);
       },
       (error) => {
@@ -112,7 +119,7 @@ export default function PreliminarySubmissionsPage() {
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
-            const isNewest = index === submissions.length - 1;
+            const isNewest = index === 0;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}?pid=${submission.displayId}`}
