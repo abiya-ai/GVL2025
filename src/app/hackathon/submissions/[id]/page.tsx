@@ -44,16 +44,6 @@ function getYouTubeEmbedUrl(videoUrl: string): string | null {
   return videoId ? `https://www.youtube.com/embed/${videoId}` : videoUrl; // Fallback to original URL
 }
 
-function generateProjectId(title: string, id: string): string {
-  const acronym = title
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-    .toUpperCase();
-  const uniqueSuffix = id.substring(0, 4).toUpperCase();
-  return `${acronym}-${uniqueSuffix}`;
-}
-
 export default function SubmissionDetailPage({
   params,
 }: {
@@ -114,7 +104,7 @@ export default function SubmissionDetailPage({
   }
 
   const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
-  const submissionId = generateProjectId(submission.title, submission.id);
+  const submissionId = `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-8 md:py-12">

@@ -39,9 +39,22 @@ export default function PreliminarySubmissionsPage() {
           imageId: data.thumbnail_url,
           appUrl: data.app_url,
           videoUrl: data.video_url,
-          description: '', // This can be populated if needed from other fields
+          painPoint: data.pain_point,
+          solution: data.solution,
           round: 'preliminary',
+          timestamp: data.timestamp,
         });
+      });
+      // Sort client-side to find the newest submission
+      submissionsData.sort((a, b) => {
+        const aSeconds = a.timestamp?.seconds || 0;
+        const bSeconds = b.timestamp?.seconds || 0;
+        if (bSeconds - aSeconds !== 0) {
+          return bSeconds - aSeconds;
+        }
+        const aNanos = a.timestamp?.nanoseconds || 0;
+        const bNanos = b.timestamp?.nanoseconds || 0;
+        return bNanos - aNanos;
       });
       setSubmissions(submissionsData);
       setLoading(false);
@@ -75,14 +88,20 @@ export default function PreliminarySubmissionsPage() {
       {submissions.length > 0 ? (
         <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {submissions.map((submission, index) => {
-            const submissionId = `Proj-${submission.id.substring(0, 4)}`;
+            const isNewest = index === 0;
+            const submissionId = `Proj-${String(index + 1).padStart(2, '0')}`;
             return (
               <Link
                 href={`/hackathon/submissions/${submission.id}`}
                 key={submission.id}
                 className="group block text-left"
               >
-                <Card className="h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
+                <Card className="relative h-full overflow-hidden transition-all duration-300 ease-in-out group-hover:shadow-2xl group-hover:-translate-y-2 rounded-xl">
+                  {isNewest && (
+                     <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground font-bold py-1 px-3 z-10">
+                      New 🔥
+                    </Badge>
+                  )}
                   <CardHeader className="p-0">
                     {submission.imageId && (
                       <div className="relative w-full aspect-video">
