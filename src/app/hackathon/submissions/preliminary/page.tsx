@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Card,
@@ -12,7 +13,12 @@ import { Users, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { Submission } from '@/lib/submissions';
 import { db } from '@/firebase/config';
-import { collection, onSnapshot, query, Timestamp } from 'firebase/firestore';
+import {
+  collection,
+  onSnapshot,
+  query,
+  Timestamp,
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -50,15 +56,15 @@ export default function PreliminarySubmissionsPage() {
           });
         });
 
-        // 1. Sort chronologically (oldest to newest)
-        const chronologicallySorted = submissionsData.sort((a, b) => {
+        // 1. Sort chronologically from OLDEST to NEWEST
+        const sortedSubmissions = submissionsData.sort((a, b) => {
           const timeA = a.timestamp ? a.timestamp.getTime() : 0;
           const timeB = b.timestamp ? b.timestamp.getTime() : 0;
           return timeA - timeB;
         });
 
-        // 2. Assign chronological IDs
-        const finalSubmissions: SubmissionWithId[] = chronologicallySorted.map(
+        // 2. Assign chronological IDs based on the sorted list
+        const finalSubmissions: SubmissionWithId[] = sortedSubmissions.map(
           (sub, index) => ({
             ...sub,
             displayId: `Proj-${String(index + 1).padStart(2, '0')}`,
