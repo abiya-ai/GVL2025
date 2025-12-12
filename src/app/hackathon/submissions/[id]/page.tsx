@@ -1,7 +1,7 @@
 'use client';
 import { notFound, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Users, ExternalLink, Video } from 'lucide-react';
+import { ArrowLeft, Users, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import Image from 'next/image';
@@ -107,6 +107,7 @@ export default function SubmissionDetailPage({
   }
 
   const hasVideo = submission.videoUrl && submission.videoUrl.trim() !== '';
+  const hasApp = submission.appUrl && submission.appUrl.trim() !== '';
   const submissionId =
     pid || `Proj-${submission.id.substring(0, 4).toUpperCase()}`;
 
@@ -218,20 +219,41 @@ export default function SubmissionDetailPage({
             </div>
           </CardContent>
         </Card>
-      </div>
 
-      <div className="text-center flex justify-center gap-4">
-        {submission.appUrl && (
-          <Button size="lg" asChild>
-            <a
-              href={submission.appUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center"
-            >
-              Try App <ExternalLink className="ml-2 h-5 w-5" />
-            </a>
-          </Button>
+        {hasApp && (
+          <Card>
+            <CardHeader>
+              <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
+                <CardTitle>Live Application</CardTitle>
+                <Button variant="link" asChild className="p-0 h-auto">
+                  <a
+                    href={submission.appUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm"
+                  >
+                    Open app in new tab
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </div>
+              <CardDescription className="pt-2">
+                Interact with the live application below.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="relative h-[80vh] w-full overflow-hidden rounded-md border">
+                <iframe
+                  src={submission.appUrl}
+                  className="absolute top-0 left-0 h-full w-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={`${submission.title} Live App`}
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
         )}
       </div>
     </div>
