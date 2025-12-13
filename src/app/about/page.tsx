@@ -55,17 +55,17 @@ const contributors = [
   {
     name: 'Avelynn Lee',
     contribution: 'Avelynn\'s support with Google Cloud credits was instrumental in enabling our hackathon participants to deploy their applications and bring their ideas to life. Her contribution directly empowered our community to build and innovate.',
-    imageUrl: '',
-    linkedinUrl: '#',
-    googleUrl: '#',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQGaJknEQBcbTw/profile-displayphoto-shrink_800_800/B56Zbt.r_zH0Ac-/0/1747749356280?e=1767225600&v=beta&t=ZsIP3u-qUH1Yxrku8OH5fWOxc2k7KdBV9IKiGwG9dZU',
+    linkedinUrl: 'https://www.linkedin.com/in/avelynnlee/',
+    googleUrl: 'https://moma.corp.google.com/person/avelynnlee',
     initials: 'AL',
   },
   {
     name: 'Asif Saleem',
     contribution: 'As our advisor, Asif provided invaluable guidance, helping shape the program\'s direction and connecting us with the right people. His mentorship and strategic insights were key to getting GVL off the ground.',
-    imageUrl: '',
-    linkedinUrl: '#',
-    googleUrl: '#',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/C5103AQHYFMANZra20w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1581905089224?e=1767225600&v=beta&t=Ucei6reieE8UF9fP99ofFfx7_iAv_Cy7Zg8pprQKpC8',
+    linkedinUrl: 'https://www.linkedin.com/in/asifsaleem80/',
+    googleUrl: 'https://moma.corp.google.com/person/asifsaleem',
     initials: 'AS',
   }
 ];
