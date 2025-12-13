@@ -100,7 +100,7 @@ export default function AboutUsPage() {
                     href={member.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors mx-auto"
+                    className="text-primary hover:text-primary/80 transition-colors mx-auto mt-auto"
                     aria-label={`${member.name}'s LinkedIn Profile`}
                   >
                     <Linkedin className="h-6 w-6" />
