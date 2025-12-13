@@ -54,11 +54,19 @@ const teamMembers = [
 const contributors = [
   {
     name: 'Avelynn Lee',
-    contribution: 'Avelynn\'s support with Google Cloud credits was instrumental in enabling our hackathon participants to deploy their applications and bring their ideas to life. Her contribution directly empowered our community to build and innovate.'
+    contribution: 'Avelynn\'s support with Google Cloud credits was instrumental in enabling our hackathon participants to deploy their applications and bring their ideas to life. Her contribution directly empowered our community to build and innovate.',
+    imageUrl: '',
+    linkedinUrl: '#',
+    googleUrl: '#',
+    initials: 'AL',
   },
   {
     name: 'Asif Saleem',
-    contribution: 'As our advisor, Asif provided invaluable guidance, helping shape the program\'s direction and connecting us with the right people. His mentorship and strategic insights were key to getting GVL off the ground.'
+    contribution: 'As our advisor, Asif provided invaluable guidance, helping shape the program\'s direction and connecting us with the right people. His mentorship and strategic insights were key to getting GVL off the ground.',
+    imageUrl: '',
+    linkedinUrl: '#',
+    googleUrl: '#',
+    initials: 'AS',
   }
 ];
 
@@ -155,15 +163,46 @@ export default function AboutUsPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Special Thanks
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {contributors.map((contributor) => (
-              <Card key={contributor.name}>
-                <CardHeader>
-                  <CardTitle className="font-headline text-2xl">{contributor.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{contributor.contribution}</p>
-                </CardContent>
+              <Card key={contributor.name} className="flex flex-col p-6">
+                <div className="flex items-start gap-4">
+                  <Avatar className="w-16 h-16">
+                    <AvatarImage
+                      src={contributor.imageUrl}
+                      alt={`Photo of ${contributor.name}`}
+                    />
+                    <AvatarFallback>{contributor.initials}</AvatarFallback>
+                  </Avatar>
+                  <div className='flex-1'>
+                    <CardHeader className="p-0 mb-2">
+                      <CardTitle className="font-headline text-2xl">{contributor.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <p className="text-muted-foreground">{contributor.contribution}</p>
+                    </CardContent>
+                  </div>
+                </div>
+                <div className="flex justify-end items-center gap-4 mt-4 pt-4 border-t">
+                  <a
+                    href={contributor.googleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors"
+                    aria-label={`${contributor.name}'s Google Profile`}
+                  >
+                    <GoogleIcon className="h-6 w-6" />
+                  </a>
+                  <a
+                    href={contributor.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors"
+                    aria-label={`${contributor.name}'s LinkedIn Profile`}
+                  >
+                    <Linkedin className="h-6 w-6" />
+                  </a>
+                </div>
               </Card>
             ))}
           </div>
