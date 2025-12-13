@@ -1,13 +1,12 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Trophy, Image as ImageIcon, Code, Info, Atom } from "lucide-react";
+import { Home, Trophy, Image as ImageIcon, Info, Atom } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
     { href: "/", label: "Home", icon: Home },
     { href: "/hackathon", label: "Hackathon", icon: Atom },
-    { href: "/hackathon/submissions", label: "Submissions", icon: Trophy },
     { href: "/gallery", label: "Gallery", icon: ImageIcon },
     { href: "/about", label: "About", icon: Info },
 ];
