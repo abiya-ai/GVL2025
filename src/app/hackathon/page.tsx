@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Card,
@@ -31,6 +32,12 @@ const galleryImageIds = [
   'hackathon-gallery-1',
   'hackathon-gallery-2',
   'hackathon-gallery-3',
+  'hackathon-gallery-4',
+  'hackathon-gallery-5',
+  'hackathon-gallery-6',
+  'hackathon-gallery-7',
+  'hackathon-gallery-8',
+  'hackathon-gallery-9',
 ];
 
 export default function HackathonPage() {

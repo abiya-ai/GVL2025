@@ -89,6 +89,42 @@
       "description": "Close-up of a laptop with code during the hackathon.",
       "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczNyqN4bP3o9-2GCASfZpNYzuEt_Sm2iLUyqrdv4VhUA8jEqUs40Xj9G-tpoRaB4C6Rq1Le_fExdWerioseQDjEx9QuwIBZQKkD7qhZoKjdDhZ2BOJwzmaHpJzZLh7BEaeWMZyv1kMqJThI5AyY9t2St=w1710-h1288-s-no-gm?authuser=0",
       "imageHint": "coding laptop"
+    },
+    {
+      "id": "hackathon-gallery-4",
+      "description": "Participants in a workshop session.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczPVJvBUmjDI7h4Nl7MDjZqEi7PbzhEy965hrPhHoxsCnLhoG55Bj5l-ohOtJM5-q4DznstLUn3utjsGWH9sLSf8vozP7-_ExNNShFuejc0_MEcxAtc-o1RGxrCZ5y-x2kp6gV8IC8RsK7N1suWr8F4A=w1710-h1288-s-no-gm?authuser=0",
+      "imageHint": "workshop participants"
+    },
+    {
+      "id": "hackathon-gallery-5",
+      "description": "A group photo of hackathon participants.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczPS0Dav89G20eR0OL800jIOs4EspiEcfruaPJYFq0uHwkCK6L4ovd11wbD-Ux6cyBvIpzt02dR7IGKvoBAzMQF3fuwzMKpdYh2frjkxDZV7v3r38gS50mgV31w6ROjLqkQFIyqV2jn2BlMyhqQY1VcO=w1710-h1288-s-no-gm?authuser=0",
+      "imageHint": "group photo"
+    },
+    {
+      "id": "hackathon-gallery-6",
+      "description": "A presenter speaking to an audience at the hackathon.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczPOeF6A98K476vwiVnXC_-u8ErCuEmh_P4wz3uH42Av_wWcHPOFwjAyhT5q50gj8j-lwY3so-FtLebcOcfj-Oh6vTKG5xt5RFC_F6mhxNjHAVxrs8juanDSdo0ywXhG6WloExe0E6ozrY5ur7il3yNd=w2256-h1269-s-no-gm?authuser=0",
+      "imageHint": "hackathon presentation"
+    },
+    {
+      "id": "hackathon-gallery-7",
+      "description": "Hackathon winners celebrating on stage.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczOTFjvRk_ApNwFd5-6s0ZyrG8xvyymvFRvpqSCE_S7QPLdxxmrRx-Qj-ieWjAL9oqpU2lb9y8pK9EVZygQd123tb7UsdcomOHPKOaWUv98Y_LKaA-xjmzCMld_3BeBFNk_yMp2_cdMUvm5bQMVMFldB=w2256-h1269-s-no-gm?authuser=0",
+      "imageHint": "hackathon winners"
+    },
+    {
+      "id": "hackathon-gallery-8",
+      "description": "A participant working on their project.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczMZ7uZoYZvXpqrqSjAM_FopNf-dL5w0T4-q7p7t7E8DtDYnDLbvDup8veaexTiq6FGVM-YFHcmkMwECamTgg6hSrJGPaPBKU-QI6169BJR4vL0Iv4M197aaHAA3Vc3K9UlMk8S03gcgHEbDFaGxKUo7=w1280-h960-s-no-gm?authuser=0",
+      "imageHint": "coding project"
+    },
+    {
+      "id": "hackathon-gallery-9",
+      "description": "A team collaborating during the hackathon.",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczOrgZkS8kpt4IW3QLw3gccxMCUGGgIBZvybNrXnW5dEEa2-zIWzZgE1nIhFRe8Vea2f7Dyse-CGqwNOxicpjJaFElwxcDrCR-qTjsNZid-gqNTSSv6Sus3n3RcWib_aIyk-bCJApu9p_KURRNsT5ghx=w2256-h1269-s-no-gm?authuser=0",
+      "imageHint": "team collaboration"
     }
   ]
 }
