@@ -13,6 +13,8 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Button } from '@/components/ui/button';
+import { ExternalLink } from 'lucide-react';
 
 const galleryImageIds = [
   'hackathon-gallery-1',
@@ -108,6 +110,18 @@ export default function GalleryPage() {
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
+      </div>
+      <div className="text-center mt-12">
+        <p className="text-muted-foreground mb-4">Want to see more?</p>
+        <Button asChild size="lg">
+          <a
+            href="https://photos.app.goo.gl/6Abe9oip6udhTSoU7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Full Album <ExternalLink className="ml-2 h-5 w-5" />
+          </a>
+        </Button>
       </div>
     </div>
   );
