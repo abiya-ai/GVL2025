@@ -92,7 +92,7 @@ export default function AboutUsPage() {
           </Card>
         </div>
 
-        <div>
+        <div className="mb-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Meet the Team
           </h2>
@@ -139,6 +139,31 @@ export default function AboutUsPage() {
             ))}
           </div>
         </div>
+
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
+            Special Thanks
+          </h2>
+          <Card>
+            <CardContent className="p-8 text-center">
+              <p className="text-muted-foreground">
+                This program would not have been possible without the incredible support from many individuals. 
+                A huge thank you to everyone who contributed their time, expertise, and passion to make GVL a success.
+              </p>
+              {/* You can list the names of contributors here later */}
+              {/* 
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-foreground">
+                <p>Contributor One</p>
+                <p>Contributor Two</p>
+                <p>Contributor Three</p>
+                <p>Contributor Four</p>
+                <p>Contributor Five</p>
+              </div>
+              */}
+            </CardContent>
+          </Card>
+        </div>
+
       </div>
     </div>
   );
