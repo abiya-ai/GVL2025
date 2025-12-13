@@ -206,8 +206,3 @@ export default function HackathonPage() {
     </div>
   );
 }
-
-export const metadata = {
-  title: 'Hackathon | Googlers\' Vibe Lab',
-  description: 'Hackathon details, rubrics, and one-pager.',
-};
