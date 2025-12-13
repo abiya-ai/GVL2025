@@ -94,13 +94,13 @@ export default function AboutUsPage() {
                 <CardHeader className="p-0 mb-2">
                   <CardTitle className="text-xl">{member.name}</CardTitle>
                 </CardHeader>
-                <CardContent className="p-0">
-                  <p className="text-muted-foreground mb-4">{member.role}</p>
+                <CardContent className="p-0 flex flex-col flex-grow justify-between">
+                  <p className="text-muted-foreground mb-4 min-h-[40px]">{member.role}</p>
                   <a
                     href={member.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 transition-colors"
+                    className="text-primary hover:text-primary/80 transition-colors mx-auto"
                     aria-label={`${member.name}'s LinkedIn Profile`}
                   >
                     <Linkedin className="h-6 w-6" />
