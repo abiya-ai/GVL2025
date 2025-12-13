@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: 'Nigel Cheong',
     role: 'Technical Lead (Trainee)',
-    imageUrl: 'https://picsum.photos/seed/nigel/200/200',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQG8o8G1FZNo-w/profile-displayphoto-crop_800_800/B56ZpeyqztHAAI-/0/1762526932961?e=1767225600&v=beta&t=knI7C3E8RT4LeNRSDMyzS85GSC6Ipn3pAvehx4YI7Is',
     linkedinUrl: 'https://www.linkedin.com/in/nigelcheongsingapore',
     googleUrl: 'https://moma.corp.google.com/person/nigelcheong',
     initials: 'NC',
@@ -28,7 +28,7 @@ const teamMembers = [
   {
     name: 'Abiya Arul Dass',
     role: 'Enablement Lead (Trainee)',
-    imageUrl: 'https://picsum.photos/seed/abiya/200/200',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQGzpFg04JtDng/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1715788520713?e=1767225600&v=beta&t=VDjf-sncHUZDYuSW1KS6fwl2Z2DYVWRytJREyjdPWXI',
     linkedinUrl: 'https://www.linkedin.com/in/abiya-immaculate-arul-dass/',
     googleUrl: 'https://moma.corp.google.com/person/abiyaaruldass',
     initials: 'AD',
@@ -36,7 +36,7 @@ const teamMembers = [
   {
     name: 'Agnes Ang',
     role: 'Strategy & Ops Lead (Trainee)',
-    imageUrl: 'https://picsum.photos/seed/agnes/200/200',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/D5603AQE52e26xjvGqg/profile-displayphoto-scale_400_400/B56Zkz4MHQH8Ag-/0/1757511992594?e=1767225600&v=beta&t=4_IhAmMafwFQMdJSF2WCbo2gV2Dc3yDsRwMM0gaPrHk',
     linkedinUrl: 'https://www.linkedin.com/in/theagnesang/',
     googleUrl: 'https://moma.corp.google.com/person/agnesang',
     initials: 'AA',
@@ -44,7 +44,7 @@ const teamMembers = [
   {
     name: 'Alkiff Amran',
     role: 'Marketing Lead (Trainee)',
-    imageUrl: 'https://picsum.photos/seed/alkiff/200/200',
+    imageUrl: 'https://media.licdn.com/dms/image/v2/D4D03AQGfMfaLARkFww/profile-displayphoto-scale_400_400/B4DZpXx0.2KIAg-/0/1762409272361?e=1767225600&v=beta&t=oYxCFWXOiabKiA5qf_Rw51cCtpCXROaUVa6xYfs32Bc',
     linkedinUrl: 'https://www.linkedin.com/in/alkiffamran/',
     googleUrl: 'https://moma.corp.google.com/person/alkiff',
     initials: 'AA',
