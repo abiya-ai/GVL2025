@@ -75,8 +75,8 @@ export default function AboutUsPage() {
             <CardContent className="text-center text-muted-foreground space-y-4 max-w-4xl mx-auto">
               <p>
                 Googlers' Vibe Lab (GVL) started as a grassroots initiative by a
-                few passionate Googlers and trainees who saw a gap between brilliant ideas
-                and the ability to prototype them. Many non-technical
+                few passionate Googlers, some of whom were also trainees, who saw a gap between brilliant
+                ideas and the ability to prototype them. Many non-technical
                 colleagues had innovative concepts but lacked the coding skills
                 to build even a simple proof-of-concept.
               </p>
