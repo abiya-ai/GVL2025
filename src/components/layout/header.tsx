@@ -19,12 +19,18 @@ export function Header() {
           <Code2 className="h-6 w-6 text-primary" />
           <span className="font-headline">Googlers' Vibe Lab</span>
         </Link>
-        <nav className="flex items-center gap-4">
+        <nav className="hidden md:flex items-center gap-6">
           <Link
             href="/"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Home
+          </Link>
+          <Link
+            href="/about"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            About Us
           </Link>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
