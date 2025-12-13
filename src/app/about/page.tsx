@@ -51,6 +51,17 @@ const teamMembers = [
   },
 ];
 
+const contributors = [
+  {
+    name: 'Avelynn Lee',
+    contribution: 'Avelynn\'s support with Google Cloud credits was instrumental in enabling our hackathon participants to deploy their applications and bring their ideas to life. Her contribution directly empowered our community to build and innovate.'
+  },
+  {
+    name: 'Asif Saleem',
+    contribution: 'As our advisor, Asif provided invaluable guidance, helping shape the program\'s direction and connecting us with the right people. His mentorship and strategic insights were key to getting GVL off the ground.'
+  }
+];
+
 export default function AboutUsPage() {
   return (
     <div className="bg-background">
@@ -144,24 +155,21 @@ export default function AboutUsPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Special Thanks
           </h2>
-          <Card>
-            <CardContent className="p-8 text-center">
-              <p className="text-muted-foreground">
-                This program would not have been possible without the incredible support from many individuals. 
-                A huge thank you to everyone who contributed their time, expertise, and passion to make GVL a success.
-              </p>
-              {/* You can list the names of contributors here later */}
-              {/* 
-              <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-4 text-foreground">
-                <p>Contributor One</p>
-                <p>Contributor Two</p>
-                <p>Contributor Three</p>
-                <p>Contributor Four</p>
-                <p>Contributor Five</p>
-              </div>
-              */}
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {contributors.map((contributor) => (
+              <Card key={contributor.name}>
+                <CardHeader>
+                  <CardTitle className="font-headline text-2xl">{contributor.name}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{contributor.contribution}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          <p className="text-center mt-8 text-muted-foreground">
+            And a huge thank you to everyone else who contributed their time, expertise, and passion to make GVL a success.
+          </p>
         </div>
 
       </div>
