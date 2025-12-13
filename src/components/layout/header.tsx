@@ -20,18 +20,6 @@ export function Header() {
             Home
           </Link>
           <Link
-            href="/about"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            About Us
-          </Link>
-          <Link
-            href="/gallery"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          >
-            Gallery
-          </Link>
-          <Link
             href="/hackathon"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
@@ -42,6 +30,18 @@ export function Header() {
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           >
             Submissions
+          </Link>
+          <Link
+            href="/gallery"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            Gallery
+          </Link>
+          <Link
+            href="/about"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            About Us
           </Link>
         </nav>
       </div>
