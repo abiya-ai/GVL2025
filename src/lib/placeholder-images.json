@@ -75,19 +75,19 @@
     {
       "id": "hackathon-gallery-1",
       "description": "Participants collaborating at the hackathon.",
-      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYWNrYXRob24lMjBldmVudHxlbnwwfHx8fDE3NjYyODUwNDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczMRZPWGbA77UdiTLey_ja7oiLhZFb3AcIThoq87pBCGtChOkS3cJsfkbS4mijR_e1Sm-zYm-sgBYDKlpgT1xkpwdV5-SGzWIfud8Tv8nI0cYtMbXO8muM2JVtN4IEK6-kAI4RTUQog4FyGl-5eF-Ca4=w2256-h1269-s-no-gm?authuser=0",
       "imageHint": "hackathon event"
     },
     {
       "id": "hackathon-gallery-2",
       "description": "A team presenting their project on a large screen.",
-      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwcHJlc2VudGF0aW9ufGVufDB8fHx8MTc2NjI4NTA3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczNyf1MylBz8YL_YY3p4QkDQdipqJFL-khOaXouiyjn1kS9pgWsF1-GNkE_QDi9BIgTlhQTtk7mHIp3x1t3eIxJ547kPUc6T-yc7Eu_P3QF1ixqZkWanmRa3bn4sKLyUjc6d2UIrK28h3Va-7vBsoOZB=w1710-h1288-s-no-gm?authuser=0",
       "imageHint": "team presentation"
     },
     {
       "id": "hackathon-gallery-3",
       "description": "Close-up of a laptop with code during the hackathon.",
-      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBsYXB0b3B8ZW58MHx8fHwxNzY0MDU2NTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://lh3.googleusercontent.com/pw/AP1GczNyqN4bP3o9-2GCASfZpNYzuEt_Sm2iLUyqrdv4VhUA8jEqUs40Xj9G-tpoRaB4C6Rq1Le_fExdWerioseQDjEx9QuwIBZQKkD7qhZoKjdDhZ2BOJwzmaHpJzZLh7BEaeWMZyv1kMqJThI5AyY9t2St=w1710-h1288-s-no-gm?authuser=0",
       "imageHint": "coding laptop"
     }
   ]
