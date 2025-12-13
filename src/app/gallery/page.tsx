@@ -56,7 +56,7 @@ export default function GalleryPage() {
   }, [api]);
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12 bg-background">
+    <div className="container mx-auto max-w-7xl px-4 py-8 md:py-12 bg-background overflow-hidden">
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight font-headline">
           Event Gallery
@@ -75,7 +75,7 @@ export default function GalleryPage() {
         plugins={[plugin.current]}
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
-        className="w-full max-w-5xl mx-auto"
+        className="w-full max-w-4xl mx-auto"
       >
         <CarouselContent>
           {galleryImages.map((image) => (
@@ -96,15 +96,15 @@ export default function GalleryPage() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="h-14 w-14 -left-8 [&>svg]:h-8 [&>svg]:w-8" />
-        <CarouselNext className="h-14 w-14 -right-8 [&>svg]:h-8 [&>svg]:w-8" />
+        <CarouselPrevious className="h-12 w-12 -left-4 md:-left-8 [&>svg]:h-6 [&>svg]:w-6" />
+        <CarouselNext className="h-12 w-12 -right-4 md:-right-8 [&>svg]:h-6 [&>svg]:w-6" />
       </Carousel>
-      <div className="flex justify-center gap-2 mt-8">
+      <div className="flex justify-center gap-2 mt-6">
         {Array.from({ length: count }).map((_, index) => (
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className={`h-3 w-3 rounded-full transition-colors ${
+            className={`h-2.5 w-2.5 rounded-full transition-colors ${
               index === current - 1 ? 'bg-primary' : 'bg-primary/20'
             }`}
             aria-label={`Go to slide ${index + 1}`}
@@ -112,7 +112,7 @@ export default function GalleryPage() {
         ))}
       </div>
       <div className="text-center mt-12">
-        <p className="text-muted-foreground mb-4">Want to see more?</p>
+        <p className="text-muted-foreground mb-4">Would you like to see more?</p>
         <Button asChild size="lg">
           <a
             href="https://photos.app.goo.gl/6Abe9oip6udhTSoU7"
