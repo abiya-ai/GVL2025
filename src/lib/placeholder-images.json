@@ -71,6 +71,24 @@
       "description": "A vintage cookbook open on a kitchen counter with ingredients.",
       "imageUrl": "https://images.unsplash.com/photo-1490818387583-1baba5e638af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxjb29rYm9va3xlbnwwfHx8fDE3NjU4OTMwNTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "vintage cookbook"
+    },
+    {
+      "id": "hackathon-gallery-1",
+      "description": "Participants collaborating at the hackathon.",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxoYWNrYXRob24lMjBldmVudHxlbnwwfHx8fDE3NjYyODUwNDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "hackathon event"
+    },
+    {
+      "id": "hackathon-gallery-2",
+      "description": "A team presenting their project on a large screen.",
+      "imageUrl": "https://images.unsplash.com/photo-1543269865-cbf427effbad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWFtJTIwcHJlc2VudGF0aW9ufGVufDB8fHx8MTc2NjI4NTA3Nnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "team presentation"
+    },
+    {
+      "id": "hackathon-gallery-3",
+      "description": "Close-up of a laptop with code during the hackathon.",
+      "imageUrl": "https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBsYXB0b3B8ZW58MHx8fHwxNzY0MDU2NTc2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "coding laptop"
     }
   ]
 }
