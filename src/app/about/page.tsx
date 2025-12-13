@@ -19,7 +19,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 const teamMembers = [
   {
     name: 'Nigel Cheong',
-    role: 'Technical Lead',
+    role: 'Technical Lead (Trainee)',
     imageUrl: 'https://picsum.photos/seed/nigel/200/200',
     linkedinUrl: 'https://www.linkedin.com/in/nigelcheongsingapore',
     googleUrl: 'https://moma.corp.google.com/person/nigelcheong',
@@ -27,7 +27,7 @@ const teamMembers = [
   },
   {
     name: 'Abiya Arul Dass',
-    role: 'Enablement Lead',
+    role: 'Enablement Lead (Trainee)',
     imageUrl: 'https://picsum.photos/seed/abiya/200/200',
     linkedinUrl: 'https://www.linkedin.com/in/abiya-immaculate-arul-dass/',
     googleUrl: 'https://moma.corp.google.com/person/abiyaaruldass',
@@ -35,7 +35,7 @@ const teamMembers = [
   },
   {
     name: 'Agnes Ang',
-    role: 'Strategy & Ops Lead',
+    role: 'Strategy & Ops Lead (Trainee)',
     imageUrl: 'https://picsum.photos/seed/agnes/200/200',
     linkedinUrl: 'https://www.linkedin.com/in/theagnesang/',
     googleUrl: 'https://moma.corp.google.com/person/agnesang',
@@ -43,7 +43,7 @@ const teamMembers = [
   },
   {
     name: 'Alkiff Amran',
-    role: 'Marketing Lead',
+    role: 'Marketing Lead (Trainee)',
     imageUrl: 'https://picsum.photos/seed/alkiff/200/200',
     linkedinUrl: 'https://www.linkedin.com/in/alkiffamran/',
     googleUrl: 'https://moma.corp.google.com/person/alkiff',
@@ -75,7 +75,7 @@ export default function AboutUsPage() {
             <CardContent className="text-center text-muted-foreground space-y-4 max-w-4xl mx-auto">
               <p>
                 Googlers' Vibe Lab (GVL) started as a grassroots initiative by a
-                few passionate Googlers, some of whom were also trainees, who saw a gap between brilliant
+                few passionate trainee Googlers who saw a gap between brilliant
                 ideas and the ability to prototype them. Many non-technical
                 colleagues had innovative concepts but lacked the coding skills
                 to build even a simple proof-of-concept.
