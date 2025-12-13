@@ -4,25 +4,32 @@ import { Linkedin } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Joelle Kua',
-    role: 'Program Manager & Co-Founder',
-    imageUrl: 'https://lh3.googleusercontent.com/a/ACg8ocL8iJ4F_2t3-a3sJbV_c_4jXGjYqB_hD_kE_zWzB-L=s96-c',
-    linkedinUrl: 'https://www.linkedin.com/in/joellekua/',
-    initials: 'JK',
+    name: 'Nigel Cheong',
+    role: 'Technical Lead',
+    imageUrl: 'https://picsum.photos/seed/nigel/200/200',
+    linkedinUrl: '#', // TODO: Add LinkedIn URL
+    initials: 'NC',
   },
   {
-    name: 'Fen Fei',
-    role: 'Program Manager & Co-Founder',
-    imageUrl: 'https://lh3.googleusercontent.com/a/ACg8ocL8iJ4F_2t3-a3sJbV_c_4jXGjYqB_hD_kE_zWzB-L=s96-c',
-    linkedinUrl: 'https://www.linkedin.com/in/fenfei/',
-    initials: 'FF',
+    name: 'Abiya Arul Dass',
+    role: 'Enablement Lead',
+    imageUrl: 'https://picsum.photos/seed/abiya/200/200',
+    linkedinUrl: '#', // TODO: Add LinkedIn URL
+    initials: 'AD',
   },
   {
-    name: 'Putra Syafiq',
-    role: 'Tech Lead & Co-Founder',
-    imageUrl: 'https://lh3.googleusercontent.com/a/ACg8ocL8iJ4F_2t3-a3sJbV_c_4jXGjYqB_hD_kE_zWzB-L=s96-c',
-    linkedinUrl: 'https://www.linkedin.com/in/putrasyafiq',
-    initials: 'PS',
+    name: 'Agnes Ang',
+    role: 'Strategy & Ops Lead',
+    imageUrl: 'https://picsum.photos/seed/agnes/200/200',
+    linkedinUrl: '#', // TODO: Add LinkedIn URL
+    initials: 'AA',
+  },
+  {
+    name: 'Alkiff Amran',
+    role: 'Marketing Lead',
+    imageUrl: 'https://picsum.photos/seed/alkiff/200/200',
+    linkedinUrl: '#', // TODO: Add LinkedIn URL
+    initials: 'AA',
   },
 ];
 
@@ -71,7 +78,7 @@ export default function AboutUsPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-headline">
             Meet the Team
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <Card
                 key={member.name}
